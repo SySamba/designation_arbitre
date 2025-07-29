@@ -2,7 +2,7 @@
 // Configuration de la base de données
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'u588247422_arbitre');
-define('DB_USER', u588247422_arbitre');
+define('DB_USER', 'u588247422_arbitre');
 define('DB_PASS', 'Dakar2025@');
 
 try {
