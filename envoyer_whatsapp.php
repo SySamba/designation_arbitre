@@ -103,7 +103,20 @@ try {
     
     // Ajouter les officiels avec labels
     if ($match['arbitre_nom']) {
-        $message .= "🟢 *AR:* " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "\n";
+        $message .= "🟢 *AR:* " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'];
+        
+        // Ajouter la photo de l'arbitre principal s'il en a une
+        if ($match['arbitre_id']) {
+            $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
+            if ($arbitre && $arbitre['photo']) {
+                $photo_path = 'photos_arbitres/' . $arbitre['photo'];
+                if (file_exists($photo_path)) {
+                    // Pour WhatsApp, on peut mentionner qu'une photo est disponible
+                    $message .= " 📸";
+                }
+            }
+        }
+        $message .= "\n";
     }
     if ($match['assistant1_nom']) {
         $message .= "🔵 *AA1:* " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "\n";

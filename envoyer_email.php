@@ -119,7 +119,19 @@ try {
     
     // Ajouter les noms des officiels avec labels
     if ($match['arbitre_nom']) {
-        $message .= "<strong>AR : " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "</strong><br>";
+        $message .= "<strong>AR : " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "</strong>";
+        
+        // Ajouter la photo de l'arbitre principal s'il en a une
+        if ($match['arbitre_id']) {
+            $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
+            if ($arbitre && $arbitre['photo']) {
+                $photo_path = 'photos_arbitres/' . $arbitre['photo'];
+                if (file_exists($photo_path)) {
+                    $message .= "<br><img src='cid:arbitre_photo' style='width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin: 5px 0;'>";
+                }
+            }
+        }
+        $message .= "<br>";
     }
     if ($match['assistant1_nom']) {
         $message .= "<strong>AA1 : " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "</strong><br>";
@@ -146,11 +158,28 @@ try {
     </body>
     </html>";
     
-    // En-têtes pour l'email HTML
+    // Préparer les pièces jointes (photo de l'arbitre principal)
+    $attachments = [];
+    if ($match['arbitre_id']) {
+        $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
+        if ($arbitre && $arbitre['photo']) {
+            $photo_path = 'photos_arbitres/' . $arbitre['photo'];
+            if (file_exists($photo_path)) {
+                $attachments[] = [
+                    'path' => $photo_path,
+                    'name' => 'arbitre_photo.jpg',
+                    'cid' => 'arbitre_photo'
+                ];
+            }
+        }
+    }
+    
+    // En-têtes pour l'email HTML avec pièces jointes
+    $boundary = md5(time());
     $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     $headers .= "From: Commission de Désignation <noreply@scra-dakar.com>\r\n";
     $headers .= "Reply-To: noreply@scra-dakar.com\r\n";
+    $headers .= "Content-Type: multipart/related; boundary=\"" . $boundary . "\"\r\n";
     
     // Envoyer l'email à tous les destinataires
     $success = true;
@@ -158,9 +187,28 @@ try {
     
     foreach ($emails as $index => $email) {
         $to = $email;
-        $personal_message = "Cher(e) " . $noms[$index] . ",\n\n" . $message;
         
-        if (!mail($to, $sujet, $personal_message, $headers)) {
+        // Construire le message multipart avec pièces jointes
+        $body = "--" . $boundary . "\r\n";
+        $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+        $body .= "Cher(e) " . $noms[$index] . ",\n\n" . $message . "\r\n\r\n";
+        
+        // Ajouter les pièces jointes
+        foreach ($attachments as $attachment) {
+            if (file_exists($attachment['path'])) {
+                $body .= "--" . $boundary . "\r\n";
+                $body .= "Content-Type: image/jpeg; name=\"" . $attachment['name'] . "\"\r\n";
+                $body .= "Content-Transfer-Encoding: base64\r\n";
+                $body .= "Content-ID: <" . $attachment['cid'] . ">\r\n";
+                $body .= "Content-Disposition: inline; filename=\"" . $attachment['name'] . "\"\r\n\r\n";
+                $body .= chunk_split(base64_encode(file_get_contents($attachment['path']))) . "\r\n";
+            }
+        }
+        
+        $body .= "--" . $boundary . "--\r\n";
+        
+        if (!mail($to, $sujet, $body, $headers)) {
             $success = false;
             $errors[] = "Erreur d'envoi à " . $email;
         }
