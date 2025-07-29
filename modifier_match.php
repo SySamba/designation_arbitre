@@ -240,7 +240,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
 
-                            <div class="row mt-3">
+                            <div class="row mt-2">
                                 <div class="col-md-6">
                                     <label for="assistant_2_id" class="form-label">Assistant Arbitre 2</label>
                                     <select name="assistant_2_id" id="assistant_2_id" class="form-select">
@@ -265,7 +265,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
 
-                            <div class="row mt-3">
+                            <div class="row mt-2">
                                 <div class="col-md-6">
                                     <label for="assesseur_id" class="form-label">Assesseur d'Arbitres</label>
                                     <select name="assesseur_id" id="assesseur_id" class="form-select">
@@ -289,7 +289,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
 
-                            <div class="row mt-4">
+                            <div class="row mt-3">
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-warning btn-lg">
                                         <i class="fas fa-save"></i> Modifier le Match

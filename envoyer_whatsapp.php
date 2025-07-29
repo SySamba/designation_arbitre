@@ -98,7 +98,6 @@ try {
 🏆 *Tour :* " . $match['tour'] . "
 
 👨‍⚖️ *OFFICIELS DÉSIGNÉS:*
-
 ";
     
     // Ajouter les officiels avec labels

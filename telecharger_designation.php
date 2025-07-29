@@ -83,19 +83,19 @@ $html = '
         }
         .designation-table th {
             border: 1px solid #333;
-            padding: 12px 8px;
+            padding: 6px 4px;
             background: #f8f9fa;
             color: black;
             font-weight: bold;
             text-align: center;
-            font-size: 11pt;
+            font-size: 10pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
-            padding: 10px 8px;
+            padding: 4px 3px;
             text-align: center;
-            font-size: 11pt;
+            font-size: 9pt;
             vertical-align: middle;
             background: white;
         }
