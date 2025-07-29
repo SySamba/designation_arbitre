@@ -138,7 +138,7 @@ $html = '
 <body>
     <div class="header">
         <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-            <img src="./logo.jpg" alt="Logo" style="height: 60px; margin-right: 15px;">
+            <img src="logo.jpg" alt="Logo" style="height: 60px; margin-right: 15px;">
             <div>
                 <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
                 <h2>COMMISSION CENTRALE DES ARBITRES</h2>
