@@ -165,10 +165,15 @@ $html = '
 </head>
 <body>
     <div class="header">
-        <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
-        <h2>COMMISSION CENTRALE DES ARBITRES</h2>
-        <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
-        <div class="season">2025-2026</div>
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <img src="logo.jpg" alt="Logo" style="height: 60px; margin-right: 15px;">
+            <div>
+                <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
+                <h2>COMMISSION CENTRALE DES ARBITRES</h2>
+                <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
+                <div class="season">2025-2026</div>
+            </div>
+        </div>
     </div>
 
     <table class="designation-table">

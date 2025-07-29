@@ -131,16 +131,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --info-color: #17a2b8;
-            --light-bg: #ecf0f1;
-            --dark-bg: #34495e;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #dc2626;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --info-color: #0891b2;
+            --light-bg: #f1f5f9;
+            --dark-bg: #1e293b;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
             --border-radius: 12px;
             --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -151,7 +151,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -536,7 +536,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
         <nav class="navbar navbar-expand-lg navbar-dark mb-4">
             <div class="container-fluid">
                 <a class="navbar-brand" href="dashboard.php">
-                    <i class="fas fa-whistle"></i> 
+                    <img src="logo.jpg" alt="Logo" style="height: 40px; margin-right: 10px;">
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
                 </a>
                 <div class="navbar-nav ms-auto">

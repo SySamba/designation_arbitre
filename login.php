@@ -38,7 +38,7 @@ if ($_POST) {
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -97,7 +97,7 @@ if ($_POST) {
 
         .login-icon {
             font-size: 3.5rem;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -175,7 +175,7 @@ if ($_POST) {
         }
 
         .btn-login {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             border: none;
             border-radius: 15px;
             padding: 1.2rem 2rem;
@@ -184,7 +184,7 @@ if ($_POST) {
             color: white;
             width: 100%;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -205,9 +205,9 @@ if ($_POST) {
         }
 
         .btn-login:hover {
-            background: linear-gradient(135deg, #2980b9, #3498db);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
         }
 
         .btn-login:active {
@@ -263,7 +263,7 @@ if ($_POST) {
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #3498db, #2980b9, #3498db);
+            background: linear-gradient(45deg, #3b82f6, #1e3a8a, #3b82f6);
             border-radius: 25px;
             z-index: -1;
             opacity: 0.3;
@@ -293,7 +293,7 @@ if ($_POST) {
 
         /* Effet de focus amélioré */
         .input-group:focus-within .input-group-text {
-            background: linear-gradient(135deg, #2980b9, #3498db);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             transform: scale(1.05);
         }
     </style>
@@ -302,7 +302,7 @@ if ($_POST) {
     <div class="login-container">
         <div class="login-header">
             <div class="login-icon">
-                <i class="fas fa-whistle"></i>
+                <img src="logo.jpg" alt="Logo" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
             </div>
             <h1 class="login-title">Connexion</h1>
             <p class="login-subtitle">Système de Désignation d'Arbitres</p>

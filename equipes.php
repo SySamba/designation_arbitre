@@ -82,7 +82,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -99,7 +99,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
         }
 
         .card-header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
             border: none;
             padding: 1.5rem;
@@ -123,12 +123,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
             color: white;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #2980b9, #3498db);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             transform: translateY(-2px);
         }
 
@@ -285,7 +285,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
         <nav class="navbar navbar-expand-lg navbar-dark mb-4">
             <div class="container-fluid">
                 <a class="navbar-brand" href="dashboard.php">
-                    <i class="fas fa-whistle"></i> 
+                    <img src="logo.jpg" alt="Logo" style="height: 40px; margin-right: 10px;">
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
                 </a>
                 <div class="navbar-nav ms-auto">
