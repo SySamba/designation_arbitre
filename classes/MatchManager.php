@@ -38,26 +38,30 @@ class MatchManager {
             $equipe_b_id = $match['equipe_b_id'];
         }
         
-        // Vérifier si l'arbitre est déjà désigné pour un autre match le même jour
-        if ($this->arbitreDejaDesignerMemeJour($arbitre_id, $date_match, $match_id)) {
+        // Vérifier si l'arbitre est déjà désigné pour un autre match à la même heure le même jour
+        if ($this->arbitreDejaDesignerMemeHeure($arbitre_id, $date_match, $heure_match, $match_id)) {
             $resultat['disponible'] = false;
-            $resultat['raisons'][] = "Cet arbitre est déjà désigné pour un autre match le même jour";
+            $resultat['raisons'][] = "Cet arbitre est déjà désigné pour un autre match à la même heure le même jour";
         }
         
         // Vérifier si l'arbitre a déjà arbitré une des équipes du match (avertissement seulement)
         $equipes_match = [$equipe_a_id, $equipe_b_id];
         foreach ($equipes_match as $equipe_id) {
-            // Vérifier le même jour
-            if ($this->arbitreDejaArbitreEquipe($arbitre_id, $equipe_id, $date_match)) {
+            // Vérifier le même jour à la même heure
+            if ($this->arbitreDejaArbitreEquipe($arbitre_id, $equipe_id, $date_match, $heure_match)) {
                 $nom_equipe = $this->getNomEquipe($equipe_id);
-                $resultat['avertissements'][] = "Cet arbitre a déjà arbitré l'équipe $nom_equipe le même jour";
+                $arbitre = $this->getArbitreById($arbitre_id);
+                $nom_arbitre = $arbitre ? $arbitre['nom'] . ' ' . $arbitre['prenom'] : 'Cet arbitre';
+                $resultat['avertissements'][] = "$nom_arbitre a déjà arbitré l'équipe $nom_equipe le même jour à la même heure";
             }
             
             // Vérifier l'historique complet
             $nb_matchs_historique = $this->arbitreDejaArbitreEquipeHistorique($arbitre_id, $equipe_id);
             if ($nb_matchs_historique > 0) {
                 $nom_equipe = $this->getNomEquipe($equipe_id);
-                $resultat['avertissements'][] = "Cet arbitre a déjà arbitré l'équipe $nom_equipe $nb_matchs_historique fois dans l'historique";
+                $arbitre = $this->getArbitreById($arbitre_id);
+                $nom_arbitre = $arbitre ? $arbitre['nom'] . ' ' . $arbitre['prenom'] : 'Cet arbitre';
+                $resultat['avertissements'][] = "$nom_arbitre a déjà arbitré l'équipe $nom_equipe $nb_matchs_historique fois dans l'historique";
             }
         }
         
@@ -67,34 +71,42 @@ class MatchManager {
 
     
     /**
-     * Vérifier si un arbitre est déjà désigné pour un autre match le même jour
+     * Vérifier si un arbitre est déjà désigné pour un autre match à la même heure le même jour
      */
-    private function arbitreDejaDesignerMemeJour($arbitre_id, $date_match, $match_id) {
+    private function arbitreDejaDesignerMemeHeure($arbitre_id, $date_match, $heure_match, $match_id) {
         $sql = "SELECT COUNT(*) as nb_matchs 
                 FROM matchs 
                 WHERE (arbitre_id = ? OR assistant_1_id = ? OR assistant_2_id = ? OR officiel_4_id = ? OR assesseur_id = ?)
                 AND date_match = ?
+                AND heure_match = ?
                 AND id != ?";
         
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $date_match, $match_id]);
+        $stmt->execute([$arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $date_match, $heure_match, $match_id]);
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
         
         return $resultat['nb_matchs'] > 0;
     }
     
     /**
-     * Vérifier si un arbitre a déjà arbitré une équipe le même jour
+     * Vérifier si un arbitre a déjà arbitré une équipe le même jour à la même heure
      */
-    private function arbitreDejaArbitreEquipe($arbitre_id, $equipe_id, $date_match) {
+    private function arbitreDejaArbitreEquipe($arbitre_id, $equipe_id, $date_match, $heure_match = null) {
         $sql = "SELECT COUNT(*) as nb_matchs 
                 FROM matchs 
                 WHERE (arbitre_id = ? OR assistant_1_id = ? OR assistant_2_id = ? OR officiel_4_id = ? OR assesseur_id = ?)
                 AND (equipe_a_id = ? OR equipe_b_id = ?)
                 AND date_match = ?";
         
+        $params = [$arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $equipe_id, $equipe_id, $date_match];
+        
+        if ($heure_match) {
+            $sql .= " AND heure_match = ?";
+            $params[] = $heure_match;
+        }
+        
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $arbitre_id, $equipe_id, $equipe_id, $date_match]);
+        $stmt->execute($params);
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
         
         return $resultat['nb_matchs'] > 0;
