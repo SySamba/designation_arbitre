@@ -1,9 +1,9 @@
 <?php
 // Configuration de la base de données
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'gestion_arbitre');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'u588247422_arbitre');
+define('DB_USER', u588247422_arbitre');
+define('DB_PASS', 'Dakar2025@');
 
 try {
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS);
