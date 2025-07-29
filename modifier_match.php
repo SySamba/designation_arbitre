@@ -294,7 +294,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <button type="submit" class="btn btn-warning btn-lg">
                                         <i class="fas fa-save"></i> Modifier le Match
                                     </button>
-                                    <a href="index.php" class="btn btn-secondary btn-lg ms-2">
+                                    <a href="dashboard.php" class="btn btn-secondary btn-lg ms-2">
                                         <i class="fas fa-arrow-left"></i> Retour
                                     </a>
                                 </div>

@@ -57,6 +57,12 @@ if ($_POST) {
                 $photo = $_POST['photo_actuelle'] ?? null;
                 if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
                     $upload_dir = 'photos_arbitres/';
+                    
+                    // Créer le dossier s'il n'existe pas
+                    if (!is_dir($upload_dir)) {
+                        mkdir($upload_dir, 0755, true);
+                    }
+                    
                     $file_extension = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
                     $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
                     
@@ -70,6 +76,8 @@ if ($_POST) {
                                 unlink($upload_dir . $photo);
                             }
                             $photo = $photo_name;
+                        } else {
+                            error_log("Erreur lors de l'upload de la photo: " . $_FILES['photo']['error']);
                         }
                     }
                 }
@@ -89,6 +97,9 @@ if ($_POST) {
                 if ($resultat['success']) {
                     $message = $resultat['message'];
                     $message_type = 'success';
+                    // Debug: vérifier que la photo a été mise à jour
+                    $arbitre_updated = $arbitreManager->getArbitreById($arbitre_id);
+                    error_log("Photo mise à jour pour arbitre ID $arbitre_id: " . ($arbitre_updated['photo'] ?? 'null'));
                 } else {
                     $message = $resultat['message'];
                     $message_type = 'error';
