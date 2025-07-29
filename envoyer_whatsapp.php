@@ -90,7 +90,8 @@ try {
 
 📅 *Date:* " . date('d/m/Y', strtotime($match['date_match'])) . "
 ⏰ *Heure:* " . $match['heure_match'] . "
-🏟️ *Terrain:* " . $match['stade'] . "
+🏙️ *Ville:* " . $match['ville'] . "
+🏟️ *Stade:* " . $match['stade'] . "
 
 ⚽ *RENCONTRE:*
 " . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'] . "
@@ -100,21 +101,21 @@ try {
 
 ";
     
-    // Ajouter les officiels
+    // Ajouter les officiels avec labels
     if ($match['arbitre_nom']) {
-        $message .= "🟢 *Arbitre Principal:* " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "\n";
+        $message .= "🟢 *AR:* " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "\n";
     }
     if ($match['assistant1_nom']) {
-        $message .= "🔵 *Assistant 1:* " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "\n";
+        $message .= "🔵 *AA1:* " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "\n";
     }
     if ($match['assistant2_nom']) {
-        $message .= "🔵 *Assistant 2:* " . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "\n";
+        $message .= "🔵 *AA2:* " . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "\n";
     }
     if ($match['officiel4_nom']) {
-        $message .= "🟡 *4ème Officiel:* " . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "\n";
+        $message .= "🟡 *4ème:* " . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "\n";
     }
     if ($match['assesseur_nom']) {
-        $message .= "🟠 *Assesseur:* " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "\n";
+        $message .= "🟠 *ASS:* " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "\n";
     }
     
     $message .= "

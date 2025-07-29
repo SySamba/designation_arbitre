@@ -100,14 +100,14 @@ try {
             <tr>
                 <th>Date/Terrain</th>
                 <th>Rencontre</th>
-                <th>Off.</th>
                 <th>Arbitre/Assistants</th>
             </tr>
             <tr>
                 <td>
                     <strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br>
                     <strong>" . $match['heure_match'] . "</strong><br>
-                    <strong>" . $match['stade'] . "</strong>
+                    <strong>Ville : " . $match['ville'] . "</strong><br>
+                    <strong>Stade : " . $match['stade'] . "</strong>
                 </td>
                 <td>
                     <strong>" . $match['equipe_a_nom'] . "</strong><br>
@@ -115,30 +115,23 @@ try {
                     <strong>" . $match['equipe_b_nom'] . "</strong><br>
                     <em>" . $match['tour'] . "</em>
                 </td>
-                <td>
-                    AR<br>
-                    AA1<br>
-                    AA2<br>
-                    4ème<br>
-                    ASS
-                </td>
                 <td>";
     
-    // Ajouter les noms des officiels
+    // Ajouter les noms des officiels avec labels
     if ($match['arbitre_nom']) {
-        $message .= "<strong>" . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "</strong><br>";
+        $message .= "<strong>AR : " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "</strong><br>";
     }
     if ($match['assistant1_nom']) {
-        $message .= "<strong>" . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "</strong><br>";
+        $message .= "<strong>AA1 : " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "</strong><br>";
     }
     if ($match['assistant2_nom']) {
-        $message .= "<strong>" . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "</strong><br>";
+        $message .= "<strong>AA2 : " . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "</strong><br>";
     }
     if ($match['officiel4_nom']) {
-        $message .= "<strong>" . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "</strong><br>";
+        $message .= "<strong>4ème : " . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "</strong><br>";
     }
     if ($match['assesseur_nom']) {
-        $message .= "<strong>" . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "</strong><br>";
+        $message .= "<strong>ASS : " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "</strong><br>";
     }
     
     $message .= "
