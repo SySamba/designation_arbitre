@@ -840,12 +840,11 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width: 12%;">Date/Terrain</th>
-                                        <th style="width: 25%;">Rencontre</th>
-                                        <th style="width: 12%;">Off.</th>
-                                        <th style="width: 23%;">Arbitre/Assistants</th>
+                                        <th style="width: 15%;">Date/Terrain</th>
+                                        <th style="width: 30%;">Rencontre</th>
+                                        <th style="width: 35%;">Arbitre/Assistants</th>
                                         <th style="width: 8%;">Publier</th>
-                                        <th style="width: 20%;">Actions</th>
+                                        <th style="width: 12%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -854,81 +853,68 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <td>
                                                 <strong style="font-size: 1.1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br>
                                                 <span style="font-size: 1rem; color: #666;"><?php echo $match['heure_match']; ?></span><br>
-                                                <span style="font-size: 1rem; color: black; font-weight: bold;"><?php echo $match['stade']; ?></span>
+                                                <span style="font-size: 1rem; color: black; font-weight: bold;">Ville : <?php echo $match['ville']; ?></span><br>
+                                                <span style="font-size: 1rem; color: black; font-weight: bold;">Stade : <?php echo $match['stade']; ?></span>
                                             </td>
                                             <td>
                                                 <div>
                                                     <strong style="font-size: 1.2rem; color: black;"><?php echo $match['equipe_a_nom']; ?></strong><br>
                                                     <span style="font-size: 1rem; color: #666;">VS</span><br>
                                                     <strong style="font-size: 1.2rem; color: black;"><?php echo $match['equipe_b_nom']; ?></strong><br>
-                                                    <span style="font-size: 1rem; font-weight: bold; color: black;"><?php echo $match['tour']; ?></span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="small">
-                                                    <div class="mb-1">
-                                                        <span style="color: black; font-weight: bold;">AR</span>
-                                                    </div>
-                                                    <div class="mb-1">
-                                                        <span style="color: black; font-weight: bold;">AA1</span>
-                                                    </div>
-                                                    <div class="mb-1">
-                                                        <span style="color: black; font-weight: bold;">AA2</span>
-                                                    </div>
-                                                    <div class="mb-1">
-                                                        <span style="color: black; font-weight: bold;">4ème</span>
-                                                    </div>
-                                                    <div class="mb-1">
-                                                        <span style="color: black; font-weight: bold;">ASS</span>
-                                                    </div>
+                                                    <span style="font-size: 1rem; font-weight: bold; color: black;">Tour : <?php echo $match['tour']; ?></span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div style="font-size: 1rem;">
-                                                            <?php if ($match['arbitre_nom']): ?>
-            <div class="mb-1" style="font-weight: bold; display: flex; align-items: center;">
-                <span style="color: black;"><?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?></span>
-                <?php
-                // Récupérer la photo de l'arbitre principal
-                $arbitre_photo = null;
-                if ($match['arbitre_id']) {
-                    $arbitre_query = "SELECT photo FROM arbitres WHERE id = ?";
-                    $arbitre_stmt = $pdo->prepare($arbitre_query);
-                    $arbitre_stmt->execute([$match['arbitre_id']]);
-                    $arbitre_data = $arbitre_stmt->fetch(PDO::FETCH_ASSOC);
-                    $arbitre_photo = $arbitre_data['photo'] ?? null;
-                }
-                ?>
-                <?php if ($arbitre_photo): ?>
-                    <img src="photos_arbitres/<?php echo $arbitre_photo; ?>"
-                         alt="Photo de <?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?>"
-                         style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%; margin-left: 8px;">
-                <?php else: ?>
-                    <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center"
-                         style="width: 30px; height: 30px; margin-left: 8px; font-size: 12px;">
-                        <i class="fas fa-user"></i>
-                    </div>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+                                                    <?php if ($match['arbitre_nom']): ?>
+                                                        <div class="mb-1" style="font-weight: bold; display: flex; align-items: center;">
+                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">AR :</span>
+                                                            <span style="color: black;"><?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?></span>
+                                                            <?php
+                                                            // Récupérer la photo de l'arbitre principal
+                                                            $arbitre_photo = null;
+                                                            if ($match['arbitre_id']) {
+                                                                $arbitre_query = "SELECT photo FROM arbitres WHERE id = ?";
+                                                                $arbitre_stmt = $pdo->prepare($arbitre_query);
+                                                                $arbitre_stmt->execute([$match['arbitre_id']]);
+                                                                $arbitre_data = $arbitre_stmt->fetch(PDO::FETCH_ASSOC);
+                                                                $arbitre_photo = $arbitre_data['photo'] ?? null;
+                                                            }
+                                                            ?>
+                                                            <?php if ($arbitre_photo): ?>
+                                                                <img src="photos_arbitres/<?php echo $arbitre_photo; ?>"
+                                                                     alt="Photo de <?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?>"
+                                                                     style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%; margin-left: 8px;">
+                                                            <?php else: ?>
+                                                                <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                                     style="width: 30px; height: 30px; margin-left: 8px; font-size: 12px;">
+                                                                    <i class="fas fa-user"></i>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <?php if ($match['assistant1_nom']): ?>
                                                         <div class="mb-1" style="font-weight: bold; color: black;">
-                                                           <?php echo $match['assistant1_nom'] . ' ' . $match['assistant1_prenom']; ?>
+                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">AA1 :</span>
+                                                            <?php echo $match['assistant1_nom'] . ' ' . $match['assistant1_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant2_nom']): ?>
                                                         <div class="mb-1" style="font-weight: bold; color: black;">
-                                                          <?php echo $match['assistant2_nom'] . ' ' . $match['assistant2_prenom']; ?>
+                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">AA2 :</span>
+                                                            <?php echo $match['assistant2_nom'] . ' ' . $match['assistant2_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['officiel4_nom']): ?>
                                                         <div class="mb-1" style="font-weight: bold; color: black;">
-                                                         <?php echo $match['officiel4_nom'] . ' ' . $match['officiel4_prenom']; ?>
+                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">4ème :</span>
+                                                            <?php echo $match['officiel4_nom'] . ' ' . $match['officiel4_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assesseur_nom']): ?>
                                                         <div class="mb-1" style="font-weight: bold; color: black;">
-                                                         <?php echo $match['assesseur_nom'] . ' ' . $match['assesseur_prenom']; ?>
+                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">ASS :</span>
+                                                            <?php echo $match['assesseur_nom'] . ' ' . $match['assesseur_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if (!$match['arbitre_nom'] && !$match['assistant1_nom'] && !$match['assistant2_nom'] && !$match['officiel4_nom'] && !$match['assesseur_nom']): ?>
