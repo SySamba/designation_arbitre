@@ -33,7 +33,7 @@ $html = '
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            background: white;
             font-size: 10pt;
             line-height: 1.2;
             min-height: 100vh;
@@ -41,11 +41,9 @@ $html = '
         .header {
             text-align: center;
             margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
         }
         .header h1 {
             margin: 0;
@@ -73,48 +71,38 @@ $html = '
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            background: white;
+            border: 1px solid #333;
         }
         .designation-table th {
-            border: 1px solid #1e3a8a;
+            border: 1px solid #333;
             padding: 12px 8px;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            color: white;
+            background: #f8f9fa;
+            color: black;
             font-weight: bold;
             text-align: center;
             font-size: 11pt;
             vertical-align: middle;
-            position: relative;
-            overflow: hidden;
         }
         .designation-table td {
-            border: 1px solid #e0e0e0;
+            border: 1px solid #333;
             padding: 10px 8px;
             text-align: center;
             font-size: 11pt;
             vertical-align: middle;
-            background: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
+            background: white;
         }
         .date-terrain {
             text-align: center;
-            width: 15%;
+            width: 20%;
         }
         .rencontre {
             text-align: center;
-            width: 25%;
-        }
-        .off {
-            text-align: center;
-            width: 15%;
+            width: 30%;
         }
         .arbitres {
             text-align: center;
-            width: 35%;
+            width: 40%;
         }
         .scra {
             text-align: center;
@@ -142,16 +130,6 @@ $html = '
             font-weight: bold;
             text-align: center;
         }
-        .off-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            align-items: center;
-        }
-        .off-badge {
-            font-size: 10pt;
-            font-weight: bold;
-        }
         .arbitre-list {
             text-align: center;
             font-size: 12pt;
@@ -163,25 +141,21 @@ $html = '
             padding-left: 10px;
         }
         .arbitre-item strong {
-            color: #1e3a8a;
+            color: black;
             margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-            <img src="logo.jpg" alt="Logo" style="height: 60px; margin-right: 15px;">
-            <div>
-                <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
-                <h2>COMMISSION CENTRALE DES ARBITRES</h2>
-                <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
-                <div class="season">2025-2026</div>
-            </div>
+        <div style="text-align: center; margin-bottom: 10px;">
+            <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
+            <h2>COMMISSION CENTRALE DES ARBITRES</h2>
+            <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
+            <div class="season">2025-2026</div>
         </div>
-        <div style="text-align: center; margin-top: 15px; background: rgba(255, 255, 255, 0.9); padding: 10px; border-radius: 8px;">
-            <h3 style="margin: 0; font-size: 12pt; font-weight: bold; color: #1e3a8a;">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</h3>
-            <h3 style="margin: 5px 0 0 0; font-size: 11pt; color: #3b82f6;">Match N° : ' . $match_id . ' | Date de génération : ' . date('d/m/Y H:i') . '</h3>
+        <div style="text-align: center; margin-top: 15px; background: white; padding: 10px; border: 1px solid #ddd;">
+            <h3 style="margin: 0; font-size: 12pt; font-weight: bold; color: black;">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</h3>
         </div>
     </div>
 
@@ -190,7 +164,6 @@ $html = '
             <tr>
                 <th class="date-terrain">DATES/TERRAIN</th>
                 <th class="rencontre">RENCONTRE</th>
-                <th class="off">OFF.</th>
                 <th class="arbitres">ARBITRE/ASSISTANTS</th>
                 <th class="scra">S/CRA</th>
             </tr>
@@ -209,10 +182,10 @@ $html = '
                     <div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div>
                     <div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
                 </td>
-                <td class="off">
-                    <div class="off-badges">';
+                <td class="arbitres">
+                    <div class="arbitre-list">';
 
-// Générer les badges OFF et les noms d'arbitres
+// Générer les noms d'arbitres avec labels
 $arbitres_roles = [
     'arbitre_id' => 'AR',
     'assistant_1_id' => 'AA1',
@@ -228,17 +201,6 @@ $arbitres_data = [
     'officiel_4_id' => ['nom' => $match['officiel4_nom'], 'prenom' => $match['officiel4_prenom']],
     'assesseur_id' => ['nom' => $match['assesseur_nom'], 'prenom' => $match['assesseur_prenom']]
 ];
-
-// Générer les badges OFF
-foreach ($arbitres_roles as $field => $role) {
-    $html .= '<div class="off-badge">' . $role . '</div>';
-}
-
-$html .= '
-                    </div>
-                </td>
-                <td class="arbitres">
-                    <div class="arbitre-list">';
 
 // Générer les noms d'arbitres avec labels
 foreach ($arbitres_data as $field => $arbitre) {
