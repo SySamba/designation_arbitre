@@ -17,7 +17,7 @@ if (!$match) {
     exit;
 }
 
-// Générer le contenu HTML du PDF
+// Générer le contenu HTML pour le PDF
 $html = '
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,13 +30,12 @@ $html = '
             margin: 1.5cm;
         }
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background: white;
             font-size: 10pt;
             line-height: 1.2;
-            min-height: 100vh;
         }
         .header {
             text-align: center;
@@ -55,11 +54,6 @@ $html = '
             margin: 2px 0 0 0;
             font-size: 12pt;
             font-weight: bold;
-        }
-        .header h3 {
-            margin: 2px 0 0 0;
-            font-size: 10pt;
-            font-weight: normal;
         }
         .season {
             font-size: 12pt;
@@ -107,11 +101,6 @@ $html = '
         .scra {
             text-align: center;
             width: 10%;
-        }
-        .scra div {
-            font-size: 10pt;
-            font-weight: bold;
-            text-align: center;
         }
         .teams {
             font-weight: bold;
@@ -227,10 +216,21 @@ $html .= '
 </body>
 </html>';
 
-// Définir les en-têtes pour le téléchargement
+// Définir les en-têtes pour le téléchargement HTML optimisé pour PDF
 header('Content-Type: text/html; charset=utf-8');
 header('Content-Disposition: attachment; filename="designation_' . $match_id . '.html"');
 
-// Afficher le contenu HTML
+// Ajouter un script pour automatiser l'impression PDF
+$html .= '
+<script>
+// Attendre que la page soit chargée
+window.onload = function() {
+    // Ouvrir la boîte de dialogue d\'impression après 1 seconde
+    setTimeout(function() {
+        window.print();
+    }, 1000);
+};
+</script>';
+
 echo $html;
 ?> 

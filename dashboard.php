@@ -937,19 +937,9 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <a href="modifier_match.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-primary mb-1" title="Modifier">
                                                         <i class="fas fa-edit"></i> Modifier
                                                     </a>
-                                                    <div class="dropdown mb-1">
-                                                        <button class="btn btn-sm btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" title="Télécharger">
-                                                            <i class="fas fa-download"></i> Télécharger
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a class="dropdown-item" href="telecharger_designation.php?id=<?php echo $match['id']; ?>" title="Télécharger HTML">
-                                                                <i class="fas fa-file-code"></i> Format HTML
-                                                            </a></li>
-                                                            <li><a class="dropdown-item" href="telecharger_designation_pdf.php?id=<?php echo $match['id']; ?>" title="Télécharger PDF">
-                                                                <i class="fas fa-file-pdf"></i> Format PDF
-                                                            </a></li>
-                                                        </ul>
-                                                    </div>
+                                                    <a href="telecharger_designation.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-info mb-1" title="Télécharger PDF">
+                                                        <i class="fas fa-file-pdf"></i> Télécharger
+                                                    </a>
                                                     <button type="button" class="btn btn-sm btn-outline-success mb-1" 
                                                             onclick="envoyerEmail(<?php echo $match['id']; ?>)" title="Envoyer par email">
                                                         <i class="fas fa-envelope"></i> Email
