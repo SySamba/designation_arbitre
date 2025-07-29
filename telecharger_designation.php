@@ -2,6 +2,10 @@
 require_once 'auth_check.php';
 require_once 'config/database.php';
 require_once 'classes/MatchManager.php';
+require_once 'vendor/autoload.php';
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 $matchManager = new MatchManager($pdo);
 
@@ -16,6 +20,15 @@ if (!$match) {
     header('Location: dashboard.php');
     exit;
 }
+
+// Configuration DOMPDF
+$options = new Options();
+$options->set('isHtml5ParserEnabled', true);
+$options->set('isPhpEnabled', true);
+$options->set('isRemoteEnabled', true);
+$options->set('defaultFont', 'Arial');
+
+$dompdf = new Dompdf($options);
 
 // Générer le contenu HTML pour le PDF
 $html = '
@@ -133,12 +146,16 @@ $html = '
             color: black;
             margin-right: 8px;
         }
+        .logo {
+            height: 60px;
+            margin-right: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-            <img src="logo.jpg" alt="Logo" style="height: 60px; margin-right: 15px;">
+            <img src="' . __DIR__ . '/logo.jpg" alt="Logo" class="logo">
             <div>
                 <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
                 <h2>COMMISSION CENTRALE DES ARBITRES</h2>
@@ -216,21 +233,20 @@ $html .= '
 </body>
 </html>';
 
-// Définir les en-têtes pour le téléchargement HTML optimisé pour PDF
-header('Content-Type: text/html; charset=utf-8');
-header('Content-Disposition: attachment; filename="designation_' . $match_id . '.html"');
+// Charger le HTML dans DOMPDF
+$dompdf->loadHtml($html);
 
-// Ajouter un script pour automatiser l'impression PDF
-$html .= '
-<script>
-// Attendre que la page soit chargée
-window.onload = function() {
-    // Ouvrir la boîte de dialogue d\'impression après 1 seconde
-    setTimeout(function() {
-        window.print();
-    }, 1000);
-};
-</script>';
+// Rendre le PDF
+$dompdf->setPaper('A4', 'landscape');
+$dompdf->render();
 
-echo $html;
+// Définir les en-têtes pour le téléchargement PDF
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment; filename="designation_' . $match_id . '.pdf"');
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
+// Sortir le PDF
+echo $dompdf->output();
 ?> 
