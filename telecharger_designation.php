@@ -148,11 +148,14 @@ $html = '
 </head>
 <body>
     <div class="header">
-        <div style="text-align: center; margin-bottom: 10px;">
-            <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
-            <h2>COMMISSION CENTRALE DES ARBITRES</h2>
-            <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
-            <div class="season">2025-2026</div>
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <img src="./logo.jpg" alt="Logo" style="height: 60px; margin-right: 15px;">
+            <div>
+                <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
+                <h2>COMMISSION CENTRALE DES ARBITRES</h2>
+                <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
+                <div class="season">2025-2026</div>
+            </div>
         </div>
         <div style="text-align: center; margin-top: 15px; background: white; padding: 10px; border: 1px solid #ddd;">
             <h3 style="margin: 0; font-size: 12pt; font-weight: bold; color: black;">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</h3>
