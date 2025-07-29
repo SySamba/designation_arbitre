@@ -113,7 +113,7 @@ try {
                     <strong>" . $match['equipe_a_nom'] . "</strong><br>
                     <strong>VS</strong><br>
                     <strong>" . $match['equipe_b_nom'] . "</strong><br>
-                    <em>" . $match['tour'] . "</em>
+                    <strong>Tour : " . $match['tour'] . "</strong>
                 </td>
                 <td>";
     

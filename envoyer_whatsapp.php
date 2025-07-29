@@ -95,7 +95,7 @@ try {
 
 ⚽ *RENCONTRE:*
 " . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'] . "
-🏆 *Tour:* " . $match['tour'] . "
+🏆 *Tour :* " . $match['tour'] . "
 
 👨‍⚖️ *OFFICIELS DÉSIGNÉS:*
 
