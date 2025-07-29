@@ -128,7 +128,7 @@ try {
                 $photo_path = 'photos_arbitres/' . $arbitre['photo'];
                 error_log("Tentative d'ajout de photo pour arbitre ID {$match['arbitre_id']}: $photo_path");
                 if (file_exists($photo_path)) {
-                    $message .= "<br><img src='cid:arbitre_photo' style='width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin: 5px 0;'>";
+                    $message .= " <img src='cid:arbitre_photo' style='width: 40px; height: 40px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-left: 10px; border: 2px solid #ddd;'>";
                     error_log("Photo ajoutée avec succès: $photo_path");
                 } else {
                     error_log("Photo non trouvée: $photo_path");

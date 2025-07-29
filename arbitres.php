@@ -633,10 +633,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
                                 <div class="col-md-4">
                                     <label for="photo" class="form-label">Photo (Arbitres uniquement)</label>
                                     <input type="file" class="form-control" name="photo" accept="image/*" 
-                                           onchange="togglePhotoField(this)">
+                                           onchange="previewPhoto(this)">
+                                    <input type="hidden" name="photo_actuelle" value="<?php echo $arbitre_modifier ? ($arbitre_modifier['photo'] ?? '') : ''; ?>">
                                     <?php if ($arbitre_modifier && $arbitre_modifier['photo']): ?>
-                                        <input type="hidden" name="photo_actuelle" value="<?php echo $arbitre_modifier['photo']; ?>">
                                         <small class="form-text text-muted">Photo actuelle: <?php echo $arbitre_modifier['photo']; ?></small>
+                                        <br><img src="photos_arbitres/<?php echo $arbitre_modifier['photo']; ?>" 
+                                               alt="Photo actuelle" class="img-thumbnail mt-2" style="width: 100px; height: 100px; object-fit: cover;">
                                     <?php endif; ?>
                                     <small class="form-text text-muted">Formats acceptés: JPG, PNG, GIF</small>
                                 </div>
@@ -780,6 +782,31 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
                 photoLabel.style.display = 'none';
                 photoField.required = false;
                 photoField.value = '';
+            }
+        }
+        
+        // Fonction pour afficher un aperçu de la photo sélectionnée
+        function previewPhoto(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Supprimer l'ancien aperçu s'il existe
+                    const oldPreview = input.parentNode.querySelector('.photo-preview');
+                    if (oldPreview) {
+                        oldPreview.remove();
+                    }
+                    
+                    // Créer un nouvel aperçu
+                    const preview = document.createElement('img');
+                    preview.src = e.target.result;
+                    preview.className = 'photo-preview img-thumbnail mt-2';
+                    preview.style.cssText = 'width: 100px; height: 100px; object-fit: cover; border: 2px solid #007bff;';
+                    preview.alt = 'Aperçu de la nouvelle photo';
+                    
+                    input.parentNode.appendChild(preview);
+                };
+                reader.readAsDataURL(file);
             }
         }
         

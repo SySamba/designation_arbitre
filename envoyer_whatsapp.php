@@ -113,7 +113,12 @@ try {
                 if (file_exists($photo_path)) {
                     // Pour WhatsApp, on peut mentionner qu'une photo est disponible
                     $message .= " 📸";
+                    error_log("Photo WhatsApp disponible pour arbitre ID {$match['arbitre_id']}: $photo_path");
+                } else {
+                    error_log("Photo WhatsApp non trouvée: $photo_path");
                 }
+            } else {
+                error_log("Arbitre ID {$match['arbitre_id']} n'a pas de photo pour WhatsApp: " . ($arbitre['photo'] ?? 'null'));
             }
         }
         $message .= "\n";
