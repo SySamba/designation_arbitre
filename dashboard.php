@@ -840,8 +840,9 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
+                                        <th style="width: 5%;">N°</th>
                                         <th style="width: 15%;">Date/Terrain</th>
-                                        <th style="width: 30%;">Rencontre</th>
+                                        <th style="width: 25%;">Rencontre</th>
                                         <th style="width: 35%;">Arbitre/Assistants</th>
                                         <th style="width: 8%;">Publier</th>
                                         <th style="width: 12%;">Actions</th>
@@ -850,6 +851,9 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <tbody>
                                     <?php foreach ($matchs as $index => $match): ?>
                                         <tr>
+                                            <td class="text-center">
+                                                <strong style="font-size: 1.1rem; color: black;"><?php echo $index + 1; ?></strong>
+                                            </td>
                                             <td>
                                                 <strong style="font-size: 1.1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br>
                                                 <span style="font-size: 1rem; color: #666;"><?php echo $match['heure_match']; ?></span><br>
@@ -934,7 +938,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <i class="fas fa-edit"></i> Modifier
                                                     </a>
                                                     <a href="telecharger_designation.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-info mb-1" title="Télécharger">
-                                                        <i class="fas fa-download"></i> Désignation
+                                                        <i class="fas fa-download"></i> Télécharger
                                                     </a>
                                                     <button type="button" class="btn btn-sm btn-outline-success mb-1" 
                                                             onclick="envoyerEmail(<?php echo $match['id']; ?>)" title="Envoyer par email">

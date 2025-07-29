@@ -33,7 +33,7 @@ $html = '
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             font-size: 10pt;
             line-height: 1.2;
             min-height: 100vh;
@@ -80,9 +80,9 @@ $html = '
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         .designation-table th {
-            border: 1px solid #2c3e50;
+            border: 1px solid #1e3a8a;
             padding: 12px 8px;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
             font-weight: bold;
             text-align: center;
@@ -157,9 +157,14 @@ $html = '
             font-size: 12pt;
         }
         .arbitre-item {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: bold;
-            text-align: center;
+            text-align: left;
+            padding-left: 10px;
+        }
+        .arbitre-item strong {
+            color: #1e3a8a;
+            margin-right: 8px;
         }
     </style>
 </head>
@@ -173,6 +178,10 @@ $html = '
                 <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
                 <div class="season">2025-2026</div>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 15px; background: rgba(255, 255, 255, 0.9); padding: 10px; border-radius: 8px;">
+            <h3 style="margin: 0; font-size: 12pt; font-weight: bold; color: #1e3a8a;">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</h3>
+            <h3 style="margin: 5px 0 0 0; font-size: 11pt; color: #3b82f6;">Match N° : ' . $match_id . ' | Date de génération : ' . date('d/m/Y H:i') . '</h3>
         </div>
     </div>
 
@@ -191,12 +200,14 @@ $html = '
                 <td class="date-terrain">
                     <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div>
                     <div class="date-time">' . $match['heure_match'] . '</div>
-                    <div class="terrain">' . htmlspecialchars($match['stade']) . '</div>
+                    <div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div>
+                    <div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
                 </td>
                 <td class="rencontre">
                     <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div>
                     <div class="teams">Vs</div>
                     <div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div>
+                    <div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
                 </td>
                 <td class="off">
                     <div class="off-badges">';
@@ -229,12 +240,13 @@ $html .= '
                 <td class="arbitres">
                     <div class="arbitre-list">';
 
-// Générer les noms d'arbitres
+// Générer les noms d'arbitres avec labels
 foreach ($arbitres_data as $field => $arbitre) {
+    $role_label = $arbitres_roles[$field];
     if ($arbitre['nom']) {
-        $html .= '<div class="arbitre-item">' . htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']) . '</div>';
+        $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> ' . htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']) . '</div>';
     } else {
-        $html .= '<div class="arbitre-item">-</div>';
+        $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> -</div>';
     }
 }
 
