@@ -96,7 +96,7 @@ try {
         
         <h4>DÉSIGNATION D'ARBITRAGE</h4>
         
-        <table border='1' cellpadding='4' cellspacing='0' style='border-collapse: collapse; width: 100%;'>
+        <table border='1' cellpadding='2' cellspacing='0' style='border-collapse: collapse; width: 100%;'>
             <tr>
                 <th>Date/Terrain</th>
                 <th>Rencontre</th>
