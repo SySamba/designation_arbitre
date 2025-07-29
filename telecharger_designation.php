@@ -137,14 +137,14 @@ $html = '
             font-size: 12pt;
         }
         .arbitre-item {
-            margin-bottom: 6px;
+            margin-bottom: 2px;
             font-weight: bold;
             text-align: left;
-            padding-left: 10px;
+            padding-left: 5px;
         }
         .arbitre-item strong {
             color: black;
-            margin-right: 8px;
+            margin-right: 4px;
         }
         .logo {
             height: 60px;

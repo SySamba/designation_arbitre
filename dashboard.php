@@ -840,39 +840,31 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <table class="table table-striped table-bordered table-hover" style="font-size: 0.9rem;">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%;">N°</th>
-                                        <th style="width: 15%;">Date/Terrain</th>
-                                        <th style="width: 25%;">Rencontre</th>
-                                        <th style="width: 35%;">Arbitre/Assistants</th>
-                                        <th style="width: 8%;">Publier</th>
-                                        <th style="width: 12%;">Actions</th>
+                                        <th style="width: 5%; padding: 4px;">N°</th>
+                                        <th style="width: 15%; padding: 4px;">Date/Terrain</th>
+                                        <th style="width: 25%; padding: 4px;">Rencontre</th>
+                                        <th style="width: 35%; padding: 4px;">Arbitre/Assistants</th>
+                                        <th style="width: 8%; padding: 4px;">Publier</th>
+                                        <th style="width: 12%; padding: 4px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($matchs as $index => $match): ?>
                                         <tr>
-                                            <td class="text-center">
+                                            <td class="text-center" style="padding: 4px;">
                                                 <strong style="font-size: 1rem; color: black;"><?php echo $index + 1; ?></strong>
                                             </td>
-                                            <td>
-                                                <strong style="font-size: 1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br>
-                                                <span style="font-size: 0.9rem; color: #666;"><?php echo $match['heure_match']; ?></span><br>
-                                                <span style="font-size: 0.9rem; color: black; font-weight: bold;">Ville : <?php echo $match['ville']; ?></span><br>
-                                                <span style="font-size: 0.9rem; color: black; font-weight: bold;">Stade : <?php echo $match['stade']; ?></span>
+                                            <td style="padding: 4px;">
+                                                <strong style="font-size: 1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br><span style="font-size: 0.9rem; color: #666;"><?php echo $match['heure_match']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Ville : <?php echo $match['ville']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Stade : <?php echo $match['stade']; ?></span>
                                             </td>
-                                            <td>
-                                                <div>
-                                                    <strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_a_nom']; ?></strong><br>
-                                                    <span style="font-size: 0.9rem; color: #666;">VS</span><br>
-                                                    <strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_b_nom']; ?></strong><br>
-                                                    <span style="font-size: 0.9rem; font-weight: bold; color: black;">Tour : <?php echo $match['tour']; ?></span>
-                                                </div>
+                                            <td style="padding: 4px;">
+                                                <div><strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_a_nom']; ?></strong><br><span style="font-size: 0.9rem; color: #666;">VS</span><br><strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_b_nom']; ?></strong><br><span style="font-size: 0.9rem; font-weight: bold; color: black;">Tour : <?php echo $match['tour']; ?></span></div>
                                             </td>
-                                            <td>
+                                            <td style="padding: 4px;">
                                                 <div style="font-size: 0.9rem;">
                                                     <?php if ($match['arbitre_nom']): ?>
-                                                        <div class="mb-1" style="font-weight: bold; display: flex; align-items: center; margin-bottom: 2px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">AR :</span>
+                                                        <div style="font-weight: bold; display: flex; align-items: center; margin-bottom: 1px;">
+                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">AR :</span>
                                                             <span style="color: black;"><?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?></span>
                                                             <?php
                                                             // Récupérer la photo de l'arbitre principal
@@ -888,36 +880,36 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <?php if ($arbitre_photo): ?>
                                                                 <img src="photos_arbitres/<?php echo $arbitre_photo; ?>"
                                                                      alt="Photo de <?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?>"
-                                                                     style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%; margin-left: 8px;">
+                                                                     style="width: 25px; height: 25px; object-fit: cover; border-radius: 50%; margin-left: 5px;">
                                                             <?php else: ?>
                                                                 <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center"
-                                                                     style="width: 30px; height: 30px; margin-left: 8px; font-size: 12px;">
+                                                                     style="width: 25px; height: 25px; margin-left: 5px; font-size: 10px;">
                                                                     <i class="fas fa-user"></i>
                                                                 </div>
                                                             <?php endif; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant1_nom']): ?>
-                                                        <div class="mb-1" style="font-weight: bold; color: black; margin-bottom: 2px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">AA1 :</span>
+                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">AA1 :</span>
                                                             <?php echo $match['assistant1_nom'] . ' ' . $match['assistant1_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant2_nom']): ?>
-                                                        <div class="mb-1" style="font-weight: bold; color: black; margin-bottom: 2px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">AA2 :</span>
+                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">AA2 :</span>
                                                             <?php echo $match['assistant2_nom'] . ' ' . $match['assistant2_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['officiel4_nom']): ?>
-                                                        <div class="mb-1" style="font-weight: bold; color: black; margin-bottom: 2px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">4ème :</span>
+                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">4ème :</span>
                                                             <?php echo $match['officiel4_nom'] . ' ' . $match['officiel4_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assesseur_nom']): ?>
-                                                        <div class="mb-1" style="font-weight: bold; color: black; margin-bottom: 2px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 8px;">ASS :</span>
+                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">ASS :</span>
                                                             <?php echo $match['assesseur_nom'] . ' ' . $match['assesseur_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
@@ -926,30 +918,30 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <?php endif; ?>
                                                 </div>
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="padding: 4px;">
                                                 <span class="badge bg-<?php echo $match['publier'] == 'Oui' ? 'success' : 'secondary'; ?>">
                                                     <?php echo $match['publier']; ?>
                                                 </span>
                                             </td>
 
-                                            <td>
+                                            <td style="padding: 4px;">
                                                 <div class="btn-group-vertical" role="group">
-                                                    <a href="modifier_match.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-primary mb-1" title="Modifier" style="margin-bottom: 2px;">
+                                                    <a href="modifier_match.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-primary" title="Modifier" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
                                                         <i class="fas fa-edit"></i> Modifier
                                                     </a>
-                                                    <a href="telecharger_designation.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-info mb-1" title="Télécharger PDF" style="margin-bottom: 2px;">
+                                                    <a href="telecharger_designation.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-info" title="Télécharger PDF" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
                                                         <i class="fas fa-file-pdf"></i> Télécharger
                                                     </a>
-                                                    <button type="button" class="btn btn-sm btn-outline-success mb-1" 
-                                                            onclick="envoyerEmail(<?php echo $match['id']; ?>)" title="Envoyer par email" style="margin-bottom: 2px;">
+                                                    <button type="button" class="btn btn-sm btn-outline-success" 
+                                                            onclick="envoyerEmail(<?php echo $match['id']; ?>)" title="Envoyer par email" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
                                                         <i class="fas fa-envelope"></i> Email
                                                     </button>
-                                                    <button type="button" class="btn btn-sm btn-outline-success mb-1" 
-                                                            onclick="envoyerWhatsApp(<?php echo $match['id']; ?>)" title="Envoyer par WhatsApp" style="margin-bottom: 2px;">
+                                                    <button type="button" class="btn btn-sm btn-outline-success" 
+                                                            onclick="envoyerWhatsApp(<?php echo $match['id']; ?>)" title="Envoyer par WhatsApp" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
                                                         <i class="fab fa-whatsapp"></i> WhatsApp
                                                     </button>
                                                     <a href="?action=supprimer&id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-danger" 
-                                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce match ?')" title="Supprimer">
+                                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce match ?')" title="Supprimer" style="padding: 2px 6px; font-size: 0.8rem;">
                                                         <i class="fas fa-trash"></i> Supprimer
                                                     </a>
                                                 </div>

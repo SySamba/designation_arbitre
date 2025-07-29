@@ -82,23 +82,7 @@ try {
     }
     
     // Préparer le message WhatsApp
-    $message = "🏆 *FÉDÉRATION SÉNÉGALAISE DE FOOTBALL*
-🏟️ *COMMISSION CENTRALE DES ARBITRES*
-📋 *COMMISSION DE DESIGNATION S/CRA DAKAR 2025-2026*
-
-*DÉSIGNATION D'ARBITRAGE*
-
-📅 *Date:* " . date('d/m/Y', strtotime($match['date_match'])) . "
-⏰ *Heure:* " . $match['heure_match'] . "
-🏙️ *Ville:* " . $match['ville'] . "
-🏟️ *Stade:* " . $match['stade'] . "
-
-⚽ *RENCONTRE:*
-" . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'] . "
-🏆 *Tour :* " . $match['tour'] . "
-
-👨‍⚖️ *OFFICIELS DÉSIGNÉS:*
-";
+    $message = "🏆 *FÉDÉRATION SÉNÉGALAISE DE FOOTBALL*🏟️ *COMMISSION CENTRALE DES ARBITRES*📋 *COMMISSION DE DESIGNATION S/CRA DAKAR 2025-2026**DÉSIGNATION D'ARBITRAGE*📅 *Date:* " . date('d/m/Y', strtotime($match['date_match'])) . "⏰ *Heure:* " . $match['heure_match'] . "🏙️ *Ville:* " . $match['ville'] . "🏟️ *Stade:* " . $match['stade'] . "⚽ *RENCONTRE:*" . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'] . "🏆 *Tour :* " . $match['tour'] . "👨‍⚖️ *OFFICIELS DÉSIGNÉS:*";
     
     // Ajouter les officiels avec labels
     if ($match['arbitre_nom']) {
@@ -135,11 +119,7 @@ try {
         $message .= "🟠 *ASS:* " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "\n";
     }
     
-    $message .= "
-✅ *Veuillez confirmer votre disponibilité.*
-
-Cordialement,
-Commission de Désignation S/CRA Dakar";
+    $message .= "✅ *Veuillez confirmer votre disponibilité.*Cordialement,Commission de Désignation S/CRA Dakar";
     
     // Encoder le message pour l'URL WhatsApp
     $message_encoded = urlencode($message);

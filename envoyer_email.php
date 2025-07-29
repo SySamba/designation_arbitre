@@ -103,18 +103,8 @@ try {
                 <th>Arbitre/Assistants</th>
             </tr>
             <tr>
-                <td>
-                    <strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br>
-                    <strong>" . $match['heure_match'] . "</strong><br>
-                    <strong>Ville : " . $match['ville'] . "</strong><br>
-                    <strong>Stade : " . $match['stade'] . "</strong>
-                </td>
-                <td>
-                    <strong>" . $match['equipe_a_nom'] . "</strong><br>
-                    <strong>VS</strong><br>
-                    <strong>" . $match['equipe_b_nom'] . "</strong><br>
-                    <strong>Tour : " . $match['tour'] . "</strong>
-                </td>
+                <td><strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br><strong>" . $match['heure_match'] . "</strong><br><strong>Ville : " . $match['ville'] . "</strong><br><strong>Stade : " . $match['stade'] . "</strong></td>
+                <td><strong>" . $match['equipe_a_nom'] . "</strong><br><strong>VS</strong><br><strong>" . $match['equipe_b_nom'] . "</strong><br><strong>Tour : " . $match['tour'] . "</strong></td>
                 <td>";
     
     // Ajouter les noms des officiels avec labels
@@ -152,15 +142,7 @@ try {
         $message .= "<strong>ASS : " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "</strong><br>";
     }
     
-    $message .= "
-                </td>
-            </tr>
-        </table>
-        
-        <p><strong>Veuillez confirmer votre disponibilité.</strong></p>
-        
-        <p>Cordialement,<br>
-        Commission de Désignation S/CRA Dakar</p>
+    $message .= "</td></tr></table><p><strong>Veuillez confirmer votre disponibilité.</strong></p><p>Cordialement,<br>Commission de Désignation S/CRA Dakar</p>
     </body>
     </html>";
     
