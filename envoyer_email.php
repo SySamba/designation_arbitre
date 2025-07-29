@@ -1,0 +1,192 @@
+<?php
+require_once 'auth_check.php';
+require_once 'config/database.php';
+require_once 'classes/MatchManager.php';
+require_once 'classes/ArbitreManager.php';
+
+header('Content-Type: application/json');
+
+// Récupérer les données JSON
+$input = json_decode(file_get_contents('php://input'), true);
+$match_id = $input['match_id'] ?? null;
+
+if (!$match_id) {
+    echo json_encode(['success' => false, 'message' => 'ID du match manquant']);
+    exit;
+}
+
+try {
+    $matchManager = new MatchManager($pdo);
+    $arbitreManager = new ArbitreManager($pdo);
+    
+    // Récupérer les détails du match
+    $match = $matchManager->getMatchById($match_id);
+    
+    if (!$match) {
+        echo json_encode(['success' => false, 'message' => 'Match non trouvé']);
+        exit;
+    }
+    
+    // Récupérer les emails des arbitres et assesseurs
+    $emails = [];
+    $noms = [];
+    
+    // Arbitre principal
+    if ($match['arbitre_id']) {
+        $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
+        if ($arbitre && $arbitre['email']) {
+            $emails[] = $arbitre['email'];
+            $noms[] = $arbitre['nom'] . ' ' . $arbitre['prenom'] . ' (Arbitre Principal)';
+        }
+    }
+    
+    // Assistant 1
+    if ($match['assistant_1_id']) {
+        $assistant1 = $arbitreManager->getArbitreById($match['assistant_1_id']);
+        if ($assistant1 && $assistant1['email']) {
+            $emails[] = $assistant1['email'];
+            $noms[] = $assistant1['nom'] . ' ' . $assistant1['prenom'] . ' (Assistant 1)';
+        }
+    }
+    
+    // Assistant 2
+    if ($match['assistant_2_id']) {
+        $assistant2 = $arbitreManager->getArbitreById($match['assistant_2_id']);
+        if ($assistant2 && $assistant2['email']) {
+            $emails[] = $assistant2['email'];
+            $noms[] = $assistant2['nom'] . ' ' . $assistant2['prenom'] . ' (Assistant 2)';
+        }
+    }
+    
+    // 4ème officiel
+    if ($match['officiel_4_id']) {
+        $officiel4 = $arbitreManager->getArbitreById($match['officiel_4_id']);
+        if ($officiel4 && $officiel4['email']) {
+            $emails[] = $officiel4['email'];
+            $noms[] = $officiel4['nom'] . ' ' . $officiel4['prenom'] . ' (4ème Officiel)';
+        }
+    }
+    
+    // Assesseur
+    if ($match['assesseur_id']) {
+        $assesseur = $arbitreManager->getArbitreById($match['assesseur_id']);
+        if ($assesseur && $assesseur['email']) {
+            $emails[] = $assesseur['email'];
+            $noms[] = $assesseur['nom'] . ' ' . $assesseur['prenom'] . ' (Assesseur)';
+        }
+    }
+    
+    if (empty($emails)) {
+        echo json_encode(['success' => false, 'message' => 'Aucun email trouvé pour les arbitres/assesseurs']);
+        exit;
+    }
+    
+    // Préparer le contenu de l'email
+    $sujet = "Désignation - " . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'];
+    
+    $message = "
+    <html>
+    <head>
+        <title>Désignation d'Arbitrage</title>
+    </head>
+    <body>
+        <h2>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h2>
+        <h3>COMMISSION CENTRALE DES ARBITRES</h3>
+        <h3>COMMISSION DE DESIGNATION S/CRA DAKAR 2025-2026</h3>
+        
+        <h4>DÉSIGNATION D'ARBITRAGE</h4>
+        
+        <table border='1' cellpadding='10' cellspacing='0' style='border-collapse: collapse; width: 100%;'>
+            <tr>
+                <th>Date/Terrain</th>
+                <th>Rencontre</th>
+                <th>Off.</th>
+                <th>Arbitre/Assistants</th>
+            </tr>
+            <tr>
+                <td>
+                    <strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br>
+                    <strong>" . $match['heure_match'] . "</strong><br>
+                    <strong>" . $match['stade'] . "</strong>
+                </td>
+                <td>
+                    <strong>" . $match['equipe_a_nom'] . "</strong><br>
+                    <strong>VS</strong><br>
+                    <strong>" . $match['equipe_b_nom'] . "</strong><br>
+                    <em>" . $match['tour'] . "</em>
+                </td>
+                <td>
+                    AR<br>
+                    AA1<br>
+                    AA2<br>
+                    4ème<br>
+                    ASS
+                </td>
+                <td>";
+    
+    // Ajouter les noms des officiels
+    if ($match['arbitre_nom']) {
+        $message .= "<strong>" . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "</strong><br>";
+    }
+    if ($match['assistant1_nom']) {
+        $message .= "<strong>" . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "</strong><br>";
+    }
+    if ($match['assistant2_nom']) {
+        $message .= "<strong>" . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "</strong><br>";
+    }
+    if ($match['officiel4_nom']) {
+        $message .= "<strong>" . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "</strong><br>";
+    }
+    if ($match['assesseur_nom']) {
+        $message .= "<strong>" . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "</strong><br>";
+    }
+    
+    $message .= "
+                </td>
+            </tr>
+        </table>
+        
+        <p><strong>Veuillez confirmer votre disponibilité.</strong></p>
+        
+        <p>Cordialement,<br>
+        Commission de Désignation S/CRA Dakar</p>
+    </body>
+    </html>";
+    
+    // En-têtes pour l'email HTML
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: Commission de Désignation <noreply@scra-dakar.com>\r\n";
+    $headers .= "Reply-To: noreply@scra-dakar.com\r\n";
+    
+    // Envoyer l'email à tous les destinataires
+    $success = true;
+    $errors = [];
+    
+    foreach ($emails as $index => $email) {
+        $to = $email;
+        $personal_message = "Cher(e) " . $noms[$index] . ",\n\n" . $message;
+        
+        if (!mail($to, $sujet, $personal_message, $headers)) {
+            $success = false;
+            $errors[] = "Erreur d'envoi à " . $email;
+        }
+    }
+    
+    if ($success) {
+        echo json_encode([
+            'success' => true, 
+            'message' => 'Email envoyé avec succès à ' . count($emails) . ' destinataire(s)',
+            'destinataires' => $noms
+        ]);
+    } else {
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Erreurs lors de l\'envoi : ' . implode(', ', $errors)
+        ]);
+    }
+    
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => 'Erreur : ' . $e->getMessage()]);
+}
+?> 
