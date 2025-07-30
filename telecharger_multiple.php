@@ -457,6 +457,9 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
                 checkbox.addEventListener('change', updateDownloadButton);
             });
             
+            // Sélectionner toutes les matches par défaut
+            selectAll();
+            
             // Mettre à jour l'état initial du bouton
             updateDownloadButton();
         });
