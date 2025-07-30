@@ -114,16 +114,16 @@ $html = '
             background: white;
         }
         .date-terrain {
-            width: 5%;
+            width: 20%;
         }
         .rencontre {
-            width: 3%;
+            width: 25%;
         }
         .arbitres {
-            width: 4%;
+            width: 45%;
         }
         .scra {
-            width: 2%;
+            width: 10%;
         }
         .teams {
             font-size: 12pt;
