@@ -678,19 +678,12 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <a href="telecharger_multiple.php" class="btn btn-success btn-lg">
                                     <i class="fas fa-download"></i> 
                                     <span style="margin-left: 0.5rem;">Téléchargement Multiple par Tour</span>
                                 </a>
                                 <p class="text-muted mt-2">Sélectionnez un tour et téléchargez plusieurs rapports de désignation en une fois</p>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="arbitres.php" class="btn btn-info btn-lg">
-                                    <i class="fas fa-user-tie"></i> 
-                                    <span style="margin-left: 0.5rem;">Gérer les Arbitres</span>
-                                </a>
-                                <p class="text-muted mt-2">Ajouter, modifier ou supprimer des arbitres et assesseurs</p>
                             </div>
                         </div>
                     </div>

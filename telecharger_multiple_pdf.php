@@ -105,59 +105,48 @@ $html = '
             background: #f8f9fa;
             color: black;
             font-weight: bold;
-            text-align: center;
             font-size: 10pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
             padding: 4px 3px;
-            text-align: center;
             font-size: 9pt;
             vertical-align: middle;
             background: white;
         }
         .date-terrain {
-            text-align: center;
             width: 20%;
         }
         .rencontre {
-            text-align: center;
             width: 30%;
         }
         .arbitres {
-            text-align: center;
             width: 40%;
         }
         .scra {
-            text-align: center;
             width: 10%;
         }
         .teams {
             font-weight: bold;
             font-size: 12pt;
-            text-align: center;
         }
         .date-time {
             font-size: 12pt;
             color: #333;
             font-weight: bold;
-            text-align: center;
         }
         .terrain {
             font-size: 12pt;
             color: #666;
             font-weight: bold;
-            text-align: center;
         }
         .arbitre-list {
-            text-align: center;
             font-size: 12pt;
         }
         .arbitre-item {
             margin-bottom: 2px;
             font-weight: bold;
-            text-align: left;
             padding-left: 5px;
         }
         .arbitre-item strong {
@@ -167,9 +156,6 @@ $html = '
         .logo {
             height: 60px;
             margin-right: 15px;
-        }
-        .page-break {
-            page-break-before: always;
         }
         .competition-title {
             text-align: center;
@@ -185,52 +171,50 @@ $html = '
 </head>
 <body>';
 
-// Générer le contenu pour chaque match
-foreach ($matchs as $index => $match) {
-    // Ajouter un saut de page pour tous les matchs sauf le premier
-    if ($index > 0) {
-        $html .= '<div class="page-break"></div>';
-    }
-    
-    $html .= '
-    <div class="header">
-        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-            <img src="' . __DIR__ . '/logo.jpg" alt="Logo" class="logo">
-            <div>
-                <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
-                <h2>COMMISSION CENTRALE DES ARBITRES</h2>
-                <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
-                <div class="season">2025-2026</div>
-            </div>
+// En-tête unique pour tous les matchs
+$html .= '
+<div class="header">
+    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+        <img src="' . __DIR__ . '/logo.jpg" alt="Logo" class="logo">
+        <div>
+            <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
+            <h2>COMMISSION CENTRALE DES ARBITRES</h2>
+            <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
+            <div class="season">2025-2026</div>
         </div>
-        <div class="competition-title">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</div>
     </div>
+    <div class="competition-title">Compétition : ' . htmlspecialchars($matchs[0]['nom_competition']) . ' - Tour : ' . htmlspecialchars($matchs[0]['tour']) . '</div>
+</div>
 
-    <table class="designation-table">
-        <thead>
-            <tr>
-                <th class="date-terrain">DATES/TERRAIN</th>
-                <th class="rencontre">RENCONTRE</th>
-                <th class="arbitres">ARBITRE/ASSISTANTS</th>
-                <th class="scra">S/CRA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="date-terrain">
-                    <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div>
-                    <div class="date-time">' . $match['heure_match'] . '</div>
-                    <div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div>
-                    <div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
-                </td>
-                <td class="rencontre">
-                    <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div>
-                    <div class="teams">Vs</div>
-                    <div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div>
-                    <div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
-                </td>
-                <td class="arbitres">
-                    <div class="arbitre-list">';
+<table class="designation-table">
+    <thead>
+        <tr>
+            <th class="date-terrain">DATES/TERRAIN</th>
+            <th class="rencontre">RENCONTRE</th>
+            <th class="arbitres">ARBITRE/ASSISTANTS</th>
+            <th class="scra">S/CRA</th>
+        </tr>
+    </thead>
+    <tbody>';
+
+// Générer les lignes pour tous les matchs
+foreach ($matchs as $match) {
+    $html .= '
+        <tr>
+            <td class="date-terrain">
+                <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div>
+                <div class="date-time">' . $match['heure_match'] . '</div>
+                <div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div>
+                <div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
+            </td>
+            <td class="rencontre">
+                <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div>
+                <div class="teams">Vs</div>
+                <div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div>
+                <div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
+            </td>
+            <td class="arbitres">
+                <div class="arbitre-list">';
 
     // Générer les noms d'arbitres avec labels
     $arbitres_roles = [
@@ -260,17 +244,17 @@ foreach ($matchs as $index => $match) {
     }
 
     $html .= '
-                    </div>
-                </td>
-                <td class="scra">
-                    <div style="font-size: 10pt; font-weight: bold;">DAKAR</div>
-                </td>
-            </tr>
-        </tbody>
-    </table>';
+                </div>
+            </td>
+            <td class="scra">
+                <div style="font-size: 10pt; font-weight: bold;">DAKAR</div>
+            </td>
+        </tr>';
 }
 
 $html .= '
+    </tbody>
+</table>
 </body>
 </html>';
 
