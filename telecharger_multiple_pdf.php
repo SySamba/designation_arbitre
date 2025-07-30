@@ -120,7 +120,7 @@ $html = '
             width: 25%;
         }
         .arbitres {
-            width: 45%;
+            width: 15%;
         }
         .scra {
             width: 10%;
