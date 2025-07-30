@@ -106,33 +106,27 @@ try {
     // Encoder le message pour l'URL WhatsApp
     $message_encoded = urlencode($message);
     
-    // Créer un lien WhatsApp pour envoyer à tous les destinataires en une fois
-    $numeros_formates = [];
-    foreach ($telephones as $telephone) {
+    // Créer des liens WhatsApp individuels pour chaque destinataire
+    $whatsapp_links = [];
+    foreach ($telephones as $index => $telephone) {
         // Formater le numéro pour WhatsApp (ajouter l'indicatif du Sénégal si nécessaire)
         $numero = $telephone;
         if (strlen($numero) == 9 && $numero[0] == '7') {
             $numero = '221' . $numero; // Indicatif Sénégal
         }
-        $numeros_formates[] = $numero;
-    }
-    
-    // Créer un lien WhatsApp avec tous les numéros
-    $numeros_concatenes = implode(',', $numeros_formates);
-    $lien_whatsapp = "https://wa.me/" . $numeros_formates[0] . "?text=" . $message_encoded;
-    
-    // Si plusieurs destinataires, créer un lien de groupe
-    if (count($numeros_formates) > 1) {
-        $lien_whatsapp = "https://wa.me/" . $numeros_formates[0] . "?text=" . $message_encoded . "&group=" . implode(',', array_slice($numeros_formates, 1));
+        
+        $whatsapp_links[] = [
+            'numero' => $numero,
+            'nom' => $noms[$index],
+            'lien' => "https://wa.me/" . $numero . "?text=" . $message_encoded
+        ];
     }
     
     echo json_encode([
         'success' => true,
-        'message' => 'Lien WhatsApp généré pour ' . count($telephones) . ' destinataire(s)',
-        'lien_whatsapp' => $lien_whatsapp,
-        'destinataires' => $noms,
-        'message_text' => $message,
-        'numeros' => $numeros_formates
+        'message' => 'Liens WhatsApp générés pour ' . count($telephones) . ' destinataire(s)',
+        'destinataires' => $whatsapp_links,
+        'message_text' => $message
     ]);
     
 } catch (Exception $e) {
