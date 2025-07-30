@@ -114,13 +114,13 @@ $html = '
             background: white;
         }
         .date-terrain {
-            width: 10%;
+            width: 5%;
         }
         .rencontre {
-            width: 10%;
+            width: 3%;
         }
         .arbitres {
-            width: 10%;
+            width: 4%;
         }
         .scra {
             width: 2%;
