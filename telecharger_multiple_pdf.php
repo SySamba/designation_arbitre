@@ -120,10 +120,10 @@ $html = '
             width: 10%;
         }
         .arbitres {
-            width: 15%;
+            width: 10%;
         }
         .scra {
-            width: 15%;
+            width: 2%;
         }
         .teams {
             font-size: 12pt;
