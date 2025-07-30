@@ -1003,11 +1003,11 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         // Fonction pour envoyer la désignation par WhatsApp
         function envoyerWhatsApp(matchId) {
-            if (confirm('Voulez-vous générer le PDF et ouvrir WhatsApp pour envoyer la désignation aux arbitres et assesseurs ?')) {
+            if (confirm('Voulez-vous ouvrir WhatsApp pour envoyer la désignation aux arbitres et assesseurs ?')) {
                 // Afficher un indicateur de chargement
                 const button = event.target.closest('button');
                 const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Génération PDF...';
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Préparation...';
                 button.disabled = true;
                 
                 fetch('envoyer_whatsapp.php', {
@@ -1022,33 +1022,18 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Afficher les informations du PDF
-                        let message = 'PDF généré avec succès !\n\n';
-                        message += 'Fichier : ' + data.pdf_filename + '\n';
-                        message += 'URL : ' + data.pdf_url + '\n\n';
-                        message += 'Liens WhatsApp ouverts pour ' + data.destinataires.length + ' destinataire(s)\n\n';
-                        message += 'Instructions :\n';
-                        message += '1. Le PDF a été généré et sauvegardé\n';
-                        message += '2. Les liens WhatsApp sont ouverts\n';
-                        message += '3. Vous pouvez maintenant envoyer le PDF en pièce jointe via WhatsApp\n';
-                        message += '4. Copiez l\'URL du PDF pour l\'envoyer aux destinataires';
-                        
-                        alert(message);
-                        
                         // Ouvrir les liens WhatsApp dans de nouveaux onglets
                         data.destinataires.forEach(destinataire => {
                             window.open(destinataire.lien, '_blank');
                         });
                         
-                        // Ouvrir le PDF dans un nouvel onglet
-                        window.open(data.pdf_url, '_blank');
-                        
+                        alert('Liens WhatsApp ouverts pour ' + data.destinataires.length + ' destinataire(s)');
                     } else {
-                        alert('Erreur lors de la génération : ' + data.message);
+                        alert('Erreur lors de la préparation : ' + data.message);
                     }
                 })
                 .catch(error => {
-                    alert('Erreur lors de la génération : ' + error.message);
+                    alert('Erreur lors de la préparation : ' + error.message);
                 })
                 .finally(() => {
                     button.innerHTML = originalText;
