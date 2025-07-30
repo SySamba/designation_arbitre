@@ -106,27 +106,43 @@ try {
     // Encoder le message pour l'URL WhatsApp
     $message_encoded = urlencode($message);
     
-    // Créer des liens WhatsApp individuels pour chaque destinataire
-    $whatsapp_links = [];
-    foreach ($telephones as $index => $telephone) {
-        // Formater le numéro pour WhatsApp (ajouter l'indicatif du Sénégal si nécessaire)
-        $numero = $telephone;
-        if (strlen($numero) == 9 && $numero[0] == '7') {
-            $numero = '221' . $numero; // Indicatif Sénégal
-        }
-        
-        $whatsapp_links[] = [
-            'numero' => $numero,
-            'nom' => $noms[$index],
-            'lien' => "https://wa.me/" . $numero . "?text=" . $message_encoded
-        ];
+    // Créer un seul lien WhatsApp pour le premier destinataire
+    $numero_principal = $telephones[0];
+    if (strlen($numero_principal) == 9 && $numero_principal[0] == '7') {
+        $numero_principal = '221' . $numero_principal; // Indicatif Sénégal
     }
+    
+    // Ajouter les autres numéros dans le message
+    $autres_numeros = [];
+    for ($i = 1; $i < count($telephones); $i++) {
+        $numero = $telephones[$i];
+        if (strlen($numero) == 9 && $numero[0] == '7') {
+            $numero = '221' . $numero;
+        }
+        $autres_numeros[] = $numero;
+    }
+    
+    // Ajouter les numéros des autres destinataires dans le message
+    if (!empty($autres_numeros)) {
+        $message .= "\n\nAutres destinataires:\n";
+        foreach ($autres_numeros as $index => $numero) {
+            $message .= $noms[$index + 1] . ": " . $numero . "\n";
+        }
+    }
+    
+    // Re-encoder le message avec les numéros ajoutés
+    $message_encoded = urlencode($message);
+    
+    $lien_whatsapp = "https://wa.me/" . $numero_principal . "?text=" . $message_encoded;
     
     echo json_encode([
         'success' => true,
-        'message' => 'Liens WhatsApp générés pour ' . count($telephones) . ' destinataire(s)',
-        'destinataires' => $whatsapp_links,
-        'message_text' => $message
+        'message' => 'Lien WhatsApp généré pour ' . count($telephones) . ' destinataire(s)',
+        'lien_whatsapp' => $lien_whatsapp,
+        'destinataires' => $noms,
+        'message_text' => $message,
+        'numero_principal' => $numero_principal,
+        'autres_numeros' => $autres_numeros
     ]);
     
 } catch (Exception $e) {

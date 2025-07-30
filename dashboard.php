@@ -1022,14 +1022,12 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Ouvrir tous les liens WhatsApp en même temps
-                        data.destinataires.forEach(destinataire => {
-                            window.open(destinataire.lien, '_blank');
-                        });
+                        // Ouvrir un seul lien WhatsApp
+                        window.open(data.lien_whatsapp, '_blank');
                         
                         // Afficher la liste des destinataires
-                        let destinataires_list = data.destinataires.map(d => d.nom).join('\n');
-                        alert('Liens WhatsApp ouverts pour ' + data.destinataires.length + ' destinataire(s)\n\nDestinataires:\n' + destinataires_list);
+                        let destinataires_list = data.destinataires.join('\n');
+                        alert('Lien WhatsApp ouvert pour ' + data.destinataires.length + ' destinataire(s)\n\nDestinataires:\n' + destinataires_list + '\n\nInstructions:\n1. Le message sera envoyé au premier destinataire\n2. Copiez les numéros des autres destinataires\n3. Envoyez le même message aux autres');
                     } else {
                         alert('Erreur lors de la préparation : ' + data.message);
                     }
