@@ -58,7 +58,7 @@ $html = '
     <style>
         @page {
             size: A4 landscape;
-            margin: 0.5cm;
+            margin: 0.2cm;
         }
         body {
             font-family: Arial, sans-serif;
@@ -69,9 +69,9 @@ $html = '
             line-height: 1.2;
         }
         .header {
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             background: white;
-            padding: 5px;
+            padding: 2px;
             border: 1px solid #ddd;
         }
         .header h1 {
@@ -88,12 +88,12 @@ $html = '
         .season {
             font-size: 10pt;
             font-weight: bold;
-            margin: 2px 0;
+            margin: 0;
         }
         .designation-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 5px;
+            margin-top: 2px;
             background: white;
             border: 1px solid #333;
         }
@@ -150,9 +150,9 @@ $html = '
             margin-right: 10px;
         }
         .competition-title {
-            margin-top: 2px;
+            margin-top: 0;
             background: white;
-            padding: 2px;
+            padding: 1px;
             border: 1px solid #ddd;
             font-size: 12pt;
             font-weight: bold;
@@ -165,7 +165,7 @@ $html = '
 // En-tête unique pour tous les matchs
 $html .= '
 <div class="header">
-    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+    <div style="display: flex; align-items: center; margin-bottom: 0;">
         <img src="' . __DIR__ . '/logo.jpg" alt="Logo" class="logo">
         <div>
             <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
