@@ -76,17 +76,17 @@ $html = '
         }
         .header h1 {
             margin: 0;
-            font-size: 10pt;
+            font-size: 12pt;
             font-weight: bold;
             text-transform: uppercase;
         }
         .header h2 {
             margin: 0;
-            font-size: 8pt;
+            font-size: 10pt;
             font-weight: bold;
         }
         .season {
-            font-size: 8pt;
+            font-size: 10pt;
             font-weight: bold;
             margin: 2px 0;
         }
@@ -103,13 +103,13 @@ $html = '
             background: #f8f9fa;
             color: black;
             font-weight: bold;
-            font-size: 8pt;
+            font-size: 10pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
             padding: 0;
-            font-size: 7pt;
+            font-size: 9pt;
             vertical-align: middle;
             background: white;
         }
@@ -126,24 +126,24 @@ $html = '
             width: 10%;
         }
         .teams {
-            font-size: 7pt;
+            font-size: 12pt;
             margin: 0;
             line-height: 1;
         }
         .date-time {
-            font-size: 7pt;
+            font-size: 12pt;
             color: #333;
             margin: 0;
             line-height: 1;
         }
         .terrain {
-            font-size: 6pt;
+            font-size: 12pt;
             color: #666;
             margin: 0;
             line-height: 1;
         }
         .arbitre-list {
-            font-size: 6pt;
+            font-size: 12pt;
             line-height: 1;
         }
         .arbitre-item {
@@ -156,15 +156,15 @@ $html = '
             margin-right: 0;
         }
         .logo {
-            height: 25px;
-            margin-right: 5px;
+            height: 60px;
+            margin-right: 10px;
         }
         .competition-title {
             margin-top: 2px;
             background: white;
             padding: 2px;
             border: 1px solid #ddd;
-            font-size: 8pt;
+            font-size: 12pt;
             font-weight: bold;
             color: black;
         }
