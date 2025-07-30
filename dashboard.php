@@ -1022,12 +1022,10 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Ouvrir les liens WhatsApp dans de nouveaux onglets
-                        data.destinataires.forEach(destinataire => {
-                            window.open(destinataire.lien, '_blank');
-                        });
+                        // Ouvrir le lien WhatsApp unique pour tous les destinataires
+                        window.open(data.lien_whatsapp, '_blank');
                         
-                        alert('Liens WhatsApp ouverts pour ' + data.destinataires.length + ' destinataire(s)');
+                        alert('Lien WhatsApp ouvert pour ' + data.destinataires.length + ' destinataire(s)\n\nDestinataires:\n' + data.destinataires.join('\n'));
                     } else {
                         alert('Erreur lors de la préparation : ' + data.message);
                     }

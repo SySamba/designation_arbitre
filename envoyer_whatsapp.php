@@ -82,69 +82,57 @@ try {
     }
     
     // Préparer le message WhatsApp
-    $message = "🏆 *FÉDÉRATION SÉNÉGALAISE DE FOOTBALL*\n🏟️ *COMMISSION CENTRALE DES ARBITRES*\n📋 *COMMISSION DE DESIGNATION S/CRA DAKAR 2025-2026*\n\n*DÉSIGNATION D'ARBITRAGE*\n\n📅 *Date:* " . date('d/m/Y', strtotime($match['date_match'])) . "\n⏰ *Heure:* " . $match['heure_match'] . "\n🏙️ *Ville:* " . $match['ville'] . "\n🏟️ *Stade:* " . $match['stade'] . "\n\n⚽ *RENCONTRE:*\n" . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'] . "\n🏆 *Tour :* " . $match['tour'] . "\n\n👨‍⚖️ *OFFICIELS DÉSIGNÉS:*\n";
+    $message = "FEDERATION SENEGALAISE DE FOOTBALL\nCOMMISSION CENTRALE DES ARBITRES\nCOMMISSION DE DESIGNATION S/CRA DAKAR 2025-2026\n\nDESIGNATION D'ARBITRAGE\n\nDate: " . date('d/m/Y', strtotime($match['date_match'])) . "\nHeure: " . $match['heure_match'] . "\nVille: " . $match['ville'] . "\nStade: " . $match['stade'] . "\n\nRENCONTRE:\n" . $match['equipe_a_nom'] . " vs " . $match['equipe_b_nom'] . "\nTour: " . $match['tour'] . "\n\nOFFICIELS DESIGNES:\n";
     
     // Ajouter les officiels avec labels
     if ($match['arbitre_nom']) {
-        $message .= "🟢 *AR:* " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'];
-        
-        // Ajouter la photo de l'arbitre principal s'il en a une
-        if ($match['arbitre_id']) {
-            $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
-            if ($arbitre && $arbitre['photo']) {
-                $photo_path = 'photos_arbitres/' . $arbitre['photo'];
-                if (file_exists($photo_path)) {
-                    // Pour WhatsApp, on peut mentionner qu'une photo est disponible
-                    $message .= " 📸";
-                    error_log("Photo WhatsApp disponible pour arbitre ID {$match['arbitre_id']}: $photo_path");
-                } else {
-                    error_log("Photo WhatsApp non trouvée: $photo_path");
-                }
-            } else {
-                error_log("Arbitre ID {$match['arbitre_id']} n'a pas de photo pour WhatsApp: " . ($arbitre['photo'] ?? 'null'));
-            }
-        }
-        $message .= "\n";
+        $message .= "AR: " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "\n";
     }
     if ($match['assistant1_nom']) {
-        $message .= "🔵 *AA1:* " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "\n";
+        $message .= "AA1: " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "\n";
     }
     if ($match['assistant2_nom']) {
-        $message .= "🔵 *AA2:* " . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "\n";
+        $message .= "AA2: " . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "\n";
     }
     if ($match['officiel4_nom']) {
-        $message .= "🟡 *4ème:* " . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "\n";
+        $message .= "4eme: " . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "\n";
     }
     if ($match['assesseur_nom']) {
-        $message .= "🟠 *ASS:* " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "\n";
+        $message .= "ASS: " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "\n";
     }
     
-    $message .= "\n✅ *Veuillez confirmer votre disponibilité.*\n\nCordialement,\nCommission de Désignation S/CRA Dakar";
+    $message .= "\nVeuillez confirmer votre disponibilite.\n\nCordialement,\nCommission de Designation S/CRA Dakar";
     
     // Encoder le message pour l'URL WhatsApp
     $message_encoded = urlencode($message);
     
-    // Générer les liens WhatsApp pour chaque destinataire
-    $whatsapp_links = [];
-    foreach ($telephones as $index => $telephone) {
+    // Créer un lien WhatsApp pour envoyer à tous les destinataires en une fois
+    $numeros_formates = [];
+    foreach ($telephones as $telephone) {
         // Formater le numéro pour WhatsApp (ajouter l'indicatif du Sénégal si nécessaire)
         $numero = $telephone;
         if (strlen($numero) == 9 && $numero[0] == '7') {
             $numero = '221' . $numero; // Indicatif Sénégal
         }
-        
-        $whatsapp_links[] = [
-            'numero' => $numero,
-            'nom' => $noms[$index],
-            'lien' => "https://wa.me/" . $numero . "?text=" . $message_encoded
-        ];
+        $numeros_formates[] = $numero;
+    }
+    
+    // Créer un lien WhatsApp avec tous les numéros
+    $numeros_concatenes = implode(',', $numeros_formates);
+    $lien_whatsapp = "https://wa.me/" . $numeros_formates[0] . "?text=" . $message_encoded;
+    
+    // Si plusieurs destinataires, créer un lien de groupe
+    if (count($numeros_formates) > 1) {
+        $lien_whatsapp = "https://wa.me/" . $numeros_formates[0] . "?text=" . $message_encoded . "&group=" . implode(',', array_slice($numeros_formates, 1));
     }
     
     echo json_encode([
         'success' => true,
-        'message' => 'Liens WhatsApp générés pour ' . count($telephones) . ' destinataire(s)',
-        'destinataires' => $whatsapp_links,
-        'message_text' => $message
+        'message' => 'Lien WhatsApp généré pour ' . count($telephones) . ' destinataire(s)',
+        'lien_whatsapp' => $lien_whatsapp,
+        'destinataires' => $noms,
+        'message_text' => $message,
+        'numeros' => $numeros_formates
     ]);
     
 } catch (Exception $e) {
