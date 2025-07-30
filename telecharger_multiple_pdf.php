@@ -69,49 +69,47 @@ $html = '
             line-height: 1.2;
         }
         .header {
-            text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: white;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
         }
         .header h1 {
             margin: 0;
-            font-size: 14pt;
+            font-size: 12pt;
             font-weight: bold;
             text-transform: uppercase;
         }
         .header h2 {
-            margin: 2px 0 0 0;
-            font-size: 12pt;
+            margin: 1px 0 0 0;
+            font-size: 10pt;
             font-weight: bold;
         }
         .season {
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: bold;
-            text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
         }
         .designation-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 10px;
             background: white;
             border: 1px solid #333;
         }
         .designation-table th {
             border: 1px solid #333;
-            padding: 6px 4px;
+            padding: 3px 2px;
             background: #f8f9fa;
             color: black;
             font-weight: bold;
-            font-size: 10pt;
+            font-size: 9pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
-            padding: 4px 3px;
-            font-size: 9pt;
+            padding: 2px 1px;
+            font-size: 8pt;
             vertical-align: middle;
             background: white;
         }
@@ -128,42 +126,37 @@ $html = '
             width: 10%;
         }
         .teams {
-            font-weight: bold;
-            font-size: 12pt;
+            font-size: 9pt;
         }
         .date-time {
-            font-size: 12pt;
+            font-size: 9pt;
             color: #333;
-            font-weight: bold;
         }
         .terrain {
-            font-size: 12pt;
+            font-size: 8pt;
             color: #666;
-            font-weight: bold;
         }
         .arbitre-list {
-            font-size: 12pt;
+            font-size: 8pt;
         }
         .arbitre-item {
-            margin-bottom: 2px;
-            font-weight: bold;
-            padding-left: 5px;
+            margin-bottom: 1px;
+            padding-left: 2px;
         }
         .arbitre-item strong {
             color: black;
-            margin-right: 4px;
+            margin-right: 2px;
         }
         .logo {
-            height: 60px;
-            margin-right: 15px;
+            height: 40px;
+            margin-right: 10px;
         }
         .competition-title {
-            text-align: center;
-            margin-top: 15px;
+            margin-top: 5px;
             background: white;
-            padding: 10px;
+            padding: 5px;
             border: 1px solid #ddd;
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: bold;
             color: black;
         }
@@ -174,7 +167,7 @@ $html = '
 // En-tête unique pour tous les matchs
 $html .= '
 <div class="header">
-    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
         <img src="' . __DIR__ . '/logo.jpg" alt="Logo" class="logo">
         <div>
             <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
