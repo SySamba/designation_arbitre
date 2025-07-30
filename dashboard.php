@@ -668,26 +668,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 <?php endif; ?>
 
-                <!-- Actions rapides -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h4 class="mb-0">
-                            <i class="fas fa-bolt"></i> 
-                            <span style="margin-left: 0.5rem;">Actions Rapides</span>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a href="telecharger_multiple.php" class="btn btn-success btn-lg">
-                                    <i class="fas fa-download"></i> 
-                                    <span style="margin-left: 0.5rem;">Téléchargement Multiple par Tour</span>
-                                </a>
-                                <p class="text-muted mt-2">Sélectionnez un tour et téléchargez plusieurs rapports de désignation en une fois</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Formulaire d'ajout de match -->
                 <div class="card">

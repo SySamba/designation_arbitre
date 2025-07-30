@@ -114,16 +114,16 @@ $html = '
             background: white;
         }
         .date-terrain {
-            width: 20%;
+            width: 25%;
         }
         .rencontre {
-            width: 30%;
+            width: 25%;
         }
         .arbitres {
-            width: 40%;
+            width: 35%;
         }
         .scra {
-            width: 10%;
+            width: 15%;
         }
         .teams {
             font-size: 12pt;
@@ -154,6 +154,7 @@ $html = '
         .arbitre-item strong {
             color: black;
             margin-right: 0;
+            font-weight: normal;
         }
         .logo {
             height: 60px;
