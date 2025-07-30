@@ -555,8 +555,8 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const select = document.getElementById(selectId);
             
             fetch('autocomplete.php?type=equipes&term=')
-                .then(response => response.json())
-                .then(data => {
+                        .then(response => response.json())
+                        .then(data => {
                     // Garder l'option par défaut
                     const defaultOption = select.querySelector('option[value=""]');
                     select.innerHTML = '';
@@ -570,8 +570,8 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         option.textContent = `${equipe.nom} (${equipe.ville})`;
                         select.appendChild(option);
                     });
-                })
-                .catch(error => {
+                        })
+                        .catch(error => {
                     console.error('Erreur lors du chargement des équipes:', error);
                 });
         }
@@ -638,6 +638,10 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
                 </a>
                                             <div class="navbar-nav ms-auto">
+                                <a class="nav-link" href="telecharger_multiple.php">
+                                    <i class="fas fa-download"></i> 
+                                    <span style="margin-left: 0.3rem;">Téléchargement Multiple</span>
+                                </a>
                                 <a class="nav-link" href="arbitres.php">
                                     <i class="fas fa-user-tie"></i> 
                                     <span style="margin-left: 0.3rem;">Arbitres</span>
@@ -663,6 +667,34 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 <?php endif; ?>
+
+                <!-- Actions rapides -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            <i class="fas fa-bolt"></i> 
+                            <span style="margin-left: 0.5rem;">Actions Rapides</span>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="telecharger_multiple.php" class="btn btn-success btn-lg">
+                                    <i class="fas fa-download"></i> 
+                                    <span style="margin-left: 0.5rem;">Téléchargement Multiple par Tour</span>
+                                </a>
+                                <p class="text-muted mt-2">Sélectionnez un tour et téléchargez plusieurs rapports de désignation en une fois</p>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="arbitres.php" class="btn btn-info btn-lg">
+                                    <i class="fas fa-user-tie"></i> 
+                                    <span style="margin-left: 0.5rem;">Gérer les Arbitres</span>
+                                </a>
+                                <p class="text-muted mt-2">Ajouter, modifier ou supprimer des arbitres et assesseurs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Formulaire d'ajout de match -->
                 <div class="card">
@@ -862,7 +894,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             </td>
                                             <td style="padding: 4px;">
                                                 <div style="font-size: 0.9rem;">
-                                                    <?php if ($match['arbitre_nom']): ?>
+                                                        <?php if ($match['arbitre_nom']): ?>
                                                         <div style="font-weight: bold; display: flex; align-items: center; margin-bottom: 1px;">
                                                             <span style="color: black; font-weight: bold; margin-right: 5px;">AR :</span>
                                                             <span style="color: black;"><?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?></span>
@@ -881,36 +913,36 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                                 <img src="photos_arbitres/<?php echo $arbitre_photo; ?>"
                                                                      alt="Photo de <?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?>"
                                                                      style="width: 25px; height: 25px; object-fit: cover; border-radius: 50%; margin-left: 5px;">
-                                                            <?php else: ?>
+                                                        <?php else: ?>
                                                                 <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center"
                                                                      style="width: 25px; height: 25px; margin-left: 5px; font-size: 10px;">
                                                                     <i class="fas fa-user"></i>
-                                                                </div>
-                                                            <?php endif; ?>
+                                                    </div>
+                                                        <?php endif; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant1_nom']): ?>
                                                         <div style="font-weight: bold; color: black; margin-bottom: 1px;">
                                                             <span style="color: black; font-weight: bold; margin-right: 5px;">AA1 :</span>
-                                                            <?php echo $match['assistant1_nom'] . ' ' . $match['assistant1_prenom']; ?>
+                                                           <?php echo $match['assistant1_nom'] . ' ' . $match['assistant1_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant2_nom']): ?>
                                                         <div style="font-weight: bold; color: black; margin-bottom: 1px;">
                                                             <span style="color: black; font-weight: bold; margin-right: 5px;">AA2 :</span>
-                                                            <?php echo $match['assistant2_nom'] . ' ' . $match['assistant2_prenom']; ?>
+                                                          <?php echo $match['assistant2_nom'] . ' ' . $match['assistant2_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['officiel4_nom']): ?>
                                                         <div style="font-weight: bold; color: black; margin-bottom: 1px;">
                                                             <span style="color: black; font-weight: bold; margin-right: 5px;">4ème :</span>
-                                                            <?php echo $match['officiel4_nom'] . ' ' . $match['officiel4_prenom']; ?>
+                                                         <?php echo $match['officiel4_nom'] . ' ' . $match['officiel4_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assesseur_nom']): ?>
                                                         <div style="font-weight: bold; color: black; margin-bottom: 1px;">
                                                             <span style="color: black; font-weight: bold; margin-right: 5px;">ASS :</span>
-                                                            <?php echo $match['assesseur_nom'] . ' ' . $match['assesseur_prenom']; ?>
+                                                         <?php echo $match['assesseur_nom'] . ' ' . $match['assesseur_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if (!$match['arbitre_nom'] && !$match['assistant1_nom'] && !$match['assistant2_nom'] && !$match['officiel4_nom'] && !$match['assesseur_nom']): ?>
@@ -1135,25 +1167,25 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (equipeBSelect) {
                 equipeBSelect.addEventListener('change', function() {
                     const equipeA = equipeASelect.value;
-                    const equipeB = this.value;
-                    
-                    if (equipeA && equipeB && equipeA === equipeB) {
-                        alert('Une équipe ne peut pas jouer contre elle-même !');
-                        this.value = '';
+            const equipeB = this.value;
+            
+            if (equipeA && equipeB && equipeA === equipeB) {
+                alert('Une équipe ne peut pas jouer contre elle-même !');
+                this.value = '';
                         if (equipeBSearch) {
                             equipeBSearch.value = '';
                         }
-                    }
-                });
             }
-            
+        });
+            }
+        
             if (equipeASelect) {
                 equipeASelect.addEventListener('change', function() {
-                    const equipeA = this.value;
+            const equipeA = this.value;
                     const equipeB = equipeBSelect.value;
-                    
-                    if (equipeA && equipeB && equipeA === equipeB) {
-                        alert('Une équipe ne peut pas jouer contre elle-même !');
+            
+            if (equipeA && equipeB && equipeA === equipeB) {
+                alert('Une équipe ne peut pas jouer contre elle-même !');
                         equipeBSelect.value = '';
                         if (equipeBSearch) {
                             equipeBSearch.value = '';

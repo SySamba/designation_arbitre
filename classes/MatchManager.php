@@ -354,6 +354,44 @@ class MatchManager {
     }
     
     /**
+     * Récupérer les matchs par tour
+     */
+    public function getMatchsByTour($tour) {
+        $sql = "SELECT m.*, l.nom as ligue_nom, 
+                       e1.nom as equipe_a_nom, e2.nom as equipe_b_nom,
+                       a1.nom as arbitre_nom, a1.prenom as arbitre_prenom,
+                       as1.nom as assistant1_nom, as1.prenom as assistant1_prenom,
+                       as2.nom as assistant2_nom, as2.prenom as assistant2_prenom,
+                       o4.nom as officiel4_nom, o4.prenom as officiel4_prenom,
+                       ass.nom as assesseur_nom, ass.prenom as assesseur_prenom
+                FROM matchs m
+                LEFT JOIN ligues l ON m.ligue_id = l.id
+                LEFT JOIN equipes e1 ON m.equipe_a_id = e1.id
+                LEFT JOIN equipes e2 ON m.equipe_b_id = e2.id
+                LEFT JOIN arbitres a1 ON m.arbitre_id = a1.id
+                LEFT JOIN arbitres as1 ON m.assistant_1_id = as1.id
+                LEFT JOIN arbitres as2 ON m.assistant_2_id = as2.id
+                LEFT JOIN arbitres o4 ON m.officiel_4_id = o4.id
+                LEFT JOIN arbitres ass ON m.assesseur_id = ass.id
+                WHERE m.tour = ?
+                ORDER BY m.date_match ASC, m.heure_match ASC";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$tour]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
+     * Récupérer tous les tours disponibles
+     */
+    public function getTours() {
+        $sql = "SELECT DISTINCT tour FROM matchs ORDER BY tour";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
      * Récupérer un match par ID
      */
     public function getMatchById($match_id) {
