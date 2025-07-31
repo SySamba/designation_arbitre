@@ -58,15 +58,15 @@ $html = '
     <style>
         @page {
             size: A4 landscape;
-            margin: 0.2cm;
+            margin: 0.1cm;
         }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background: white;
-            font-size: 10pt;
-            line-height: 1.2;
+            font-size: 8pt;
+            line-height: 1;
         }
         .header {
             margin-bottom: 0;
@@ -76,85 +76,85 @@ $html = '
         }
         .header h1 {
             margin: 0;
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: bold;
             text-transform: uppercase;
         }
         .header h2 {
             margin: 0;
-            font-size: 10pt;
+            font-size: 8pt;
             font-weight: bold;
         }
         .season {
-            font-size: 10pt;
+            font-size: 8pt;
             font-weight: bold;
             margin: 0;
         }
         .designation-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 2px;
+            margin-top: 0;
             background: white;
             border: 1px solid #333;
         }
         .designation-table th {
             border: 1px solid #333;
-            padding: 1px;
+            padding: 0;
             background: #f8f9fa;
             color: black;
             font-weight: bold;
-            font-size: 10pt;
+            font-size: 8pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
             padding: 0;
-            font-size: 9pt;
+            font-size: 7pt;
             vertical-align: middle;
             background: white;
         }
 
         .teams {
-            font-size: 12pt;
+            font-size: 9pt;
             margin: 0;
             line-height: 1;
         }
         .date-time {
-            font-size: 12pt;
+            font-size: 9pt;
             color: #333;
             margin: 0;
             line-height: 1;
         }
         .terrain {
-            font-size: 12pt;
+            font-size: 9pt;
             color: #666;
             margin: 0;
             line-height: 1;
         }
         .arbitre-list {
-            font-size: 12pt;
+            font-size: 9pt;
             line-height: 1;
         }
         .arbitre-item {
             margin-bottom: 0;
-            padding-left: 1px;
+            padding-left: 0;
             line-height: 1;
         }
         .arbitre-item strong {
             color: black;
-            margin-right: 1px;
+            margin-right: 0;
             font-weight: normal;
         }
         .logo {
-            height: 60px;
-            margin-right: 10px;
+            height: 40px;
+            margin-right: 5px;
         }
         .competition-title {
-            margin-top: 2px;
+            margin-top: 0;
             background: white;
-            padding: 3px;
+            padding: 1px;
             border: 1px solid #ddd;
-            font-size: 10pt;
+            font-size: 8pt;
             font-weight: bold;
             color: black;
         }
