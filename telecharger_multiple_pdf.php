@@ -99,7 +99,7 @@ $html = '
         }
         .designation-table th {
             border: 1px solid #333;
-            padding: 2px;
+            padding: 1px;
             background: #f8f9fa;
             color: black;
             font-weight: bold;
@@ -108,7 +108,7 @@ $html = '
         }
         .designation-table td {
             border: 1px solid #333;
-            padding: 1px;
+            padding: 0;
             font-size: 9pt;
             vertical-align: middle;
             background: white;
@@ -117,32 +117,32 @@ $html = '
         .teams {
             font-size: 12pt;
             margin: 0;
-            line-height: 1.1;
+            line-height: 1;
         }
         .date-time {
             font-size: 12pt;
             color: #333;
             margin: 0;
-            line-height: 1.1;
+            line-height: 1;
         }
         .terrain {
             font-size: 12pt;
             color: #666;
             margin: 0;
-            line-height: 1.1;
+            line-height: 1;
         }
         .arbitre-list {
             font-size: 12pt;
-            line-height: 1.1;
+            line-height: 1;
         }
         .arbitre-item {
-            margin-bottom: 1px;
-            padding-left: 3px;
-            line-height: 1.1;
+            margin-bottom: 0;
+            padding-left: 1px;
+            line-height: 1;
         }
         .arbitre-item strong {
             color: black;
-            margin-right: 3px;
+            margin-right: 1px;
             font-weight: normal;
         }
         .logo {
