@@ -604,35 +604,11 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
         }
         
-        // Fonction pour faire défiler vers le formulaire
-        function scrollToForm() {
-            document.getElementById('matchFormSection').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+
         
         // Initialiser les listes déroulantes
         document.addEventListener('DOMContentLoaded', function() {
-            // Équipes
-            loadSelectOptions('equipe_a_id', 'equipes');
-            loadSelectOptions('equipe_b_id', 'equipes');
-            
-            // Arbitres
-            loadSelectOptions('arbitre_id', 'arbitres');
-            loadSelectOptions('assistant_1_id', 'arbitres');
-            loadSelectOptions('assistant_2_id', 'arbitres');
-            loadSelectOptions('officiel_4_id', 'arbitres');
-            
-            // Assesseurs
-            loadSelectOptions('assesseur_id', 'assesseurs');
-            
-            // Formulaire
-            const form = document.getElementById('matchForm');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                verifierContraintes();
-            });
+            // Code d'initialisation si nécessaire
         });
     </script>
 </head>
@@ -701,10 +677,10 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </a>
                                     </div>
                                     <div class="col-md-3 mb-2">
-                                        <button type="button" class="btn btn-warning w-100" onclick="scrollToForm()">
+                                        <a href="ajouter_match.php" class="btn btn-warning w-100">
                                             <i class="fas fa-plus me-2"></i>
                                             Ajouter un Match
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -714,168 +690,9 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-                <!-- Formulaire d'ajout de match -->
-                <div class="card" id="matchFormSection">
-                    <div class="card-header">
-                        <h4 class="mb-0">
-                            <i class="fas fa-plus-circle"></i> 
-                            <span style="margin-left: 0.5rem;">Ajouter un Match</span>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="" id="matchForm">
-                            <input type="hidden" name="action" value="ajouter_match">
-                            
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="ligue_id" class="form-label">Nom de la Compétition</label>
-                                    <select name="ligue_id" id="ligue_id" class="form-select" required>
-                                        <?php foreach ($ligues as $ligue): ?>
-                                            <option value="<?php echo $ligue['id']; ?>" <?php echo $ligue['nom'] == 'CNP' ? 'selected' : ''; ?>>
-                                                <?php echo $ligue['nom']; ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-9">
-                                    <label for="nom_competition" class="form-label">Ligue</label>
-                                    <input type="text" class="form-control" name="nom_competition" required>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-4">
-                                    <label for="ville" class="form-label">Ville</label>
-                                    <input type="text" class="form-control" name="ville" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="stade" class="form-label">Stade</label>
-                                    <input type="text" class="form-control" name="stade" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="tour" class="form-label">Tour</label>
-                                    <input type="text" class="form-control" name="tour" required>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="date_match" class="form-label">Date</label>
-                                    <input type="date" class="form-control" name="date_match" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="heure_match" class="form-label">Heure</label>
-                                    <input type="time" class="form-control" name="heure_match" required>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="equipe_a_id" class="form-label">Équipe A</label>
-                                    <select name="equipe_a_id" id="equipe_a_id" class="form-select" required>
-                                        <option value="">Sélectionner une équipe...</option>
-                                        <option value="1">AS Dakar (Dakar)</option>
-                                        <option value="2">US Thiès (Thiès)</option>
-                                        <option value="3">FC Saint-Louis (Saint-Louis)</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="equipe_b_id" class="form-label">Équipe B</label>
-                                    <select name="equipe_b_id" id="equipe_b_id" class="form-select" required>
-                                        <option value="">Sélectionner une équipe...</option>
-                                        <option value="1">AS Dakar (Dakar)</option>
-                                        <option value="2">US Thiès (Thiès)</option>
-                                        <option value="3">FC Saint-Louis (Saint-Louis)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1.5rem;">
-                                <i class="fas fa-user-tie"></i> 
-                                <span style="margin-left: 0.5rem;">Désignation des Arbitres</span>
-                            </h5>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="arbitre_id" class="form-label">Arbitre Principal</label>
-                                    <select name="arbitre_id" id="arbitre_id" class="form-select" required>
-                                        <option value="">Sélectionner un arbitre...</option>
-                                        <option value="1">Dupont Jean</option>
-                                        <option value="2">Martin Pierre</option>
-                                        <option value="3">Bernard Michel</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="assistant_1_id" class="form-label">Assistant Arbitre 1</label>
-                                    <select name="assistant_1_id" id="assistant_1_id" class="form-select">
-                                        <option value="">Sélectionner un arbitre...</option>
-                                        <option value="1">Dupont Jean</option>
-                                        <option value="2">Martin Pierre</option>
-                                        <option value="3">Bernard Michel</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="assistant_2_id" class="form-label">Assistant Arbitre 2</label>
-                                    <select name="assistant_2_id" id="assistant_2_id" class="form-select">
-                                        <option value="">Sélectionner un arbitre...</option>
-                                        <option value="1">Dupont Jean</option>
-                                        <option value="2">Martin Pierre</option>
-                                        <option value="3">Bernard Michel</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="officiel_4_id" class="form-label">4ème Officiel</label>
-                                    <select name="officiel_4_id" id="officiel_4_id" class="form-select">
-                                        <option value="">Sélectionner un arbitre...</option>
-                                        <option value="1">Dupont Jean</option>
-                                        <option value="2">Martin Pierre</option>
-                                        <option value="3">Bernard Michel</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="assesseur_id" class="form-label">Assesseur d'Arbitres</label>
-                                    <select name="assesseur_id" id="assesseur_id" class="form-select">
-                                        <option value="">Sélectionner un assesseur...</option>
-                                        <option value="4">Petit André</option>
-                                        <option value="5">Robert René</option>
-                                        <option value="6">Dubois Paul</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="publier" class="form-label">Publier</label>
-                                    <select name="publier" id="publier" class="form-select" required>
-                                        <option value="Non">Non</option>
-                                        <option value="Oui">Oui</option>
-                                    </select>
-                                    <small class="form-text text-muted">
-                                        Si "Oui", les arbitres recevront un email de désignation
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="row mt-4">
-                                <div class="col-12 text-center">
-                                    <button type="button" class="btn btn-primary btn-lg" onclick="verifierContraintes()">
-                                        <i class="fas fa-save"></i> 
-                                        <span style="margin-left: 0.5rem;">Enregistrer le Match</span>
-                                    </button>
-                                    <button type="button" class="btn btn-secondary btn-lg ms-3" onclick="resetForm()">
-                                        <i class="fas fa-undo"></i> 
-                                        <span style="margin-left: 0.5rem;">Réinitialiser</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
                 <!-- Liste des matchs -->
                 <div class="card">
