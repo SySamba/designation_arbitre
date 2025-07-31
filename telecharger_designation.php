@@ -40,15 +40,15 @@ $html = '
     <style>
         @page {
             size: A4 landscape;
-            margin: 0.1cm;
+            margin: 0.2cm;
         }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background: white;
-            font-size: 8pt;
-            line-height: 1;
+            font-size: 10pt;
+            line-height: 1.2;
         }
         .header {
             text-align: center;
@@ -59,43 +59,43 @@ $html = '
         }
         .header h1 {
             margin: 0;
-            font-size: 10pt;
+            font-size: 12pt;
             font-weight: bold;
             text-transform: uppercase;
         }
         .header h2 {
             margin: 0;
-            font-size: 8pt;
+            font-size: 10pt;
             font-weight: bold;
         }
         .season {
-            font-size: 8pt;
+            font-size: 10pt;
             font-weight: bold;
             text-align: center;
-            margin: 1px 0;
+            margin: 2px 0;
         }
         .designation-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 0;
+            margin-top: 2px;
             background: white;
             border: 1px solid #333;
         }
         .designation-table th {
             border: 1px solid #333;
-            padding: 0;
+            padding: 1px;
             background: #f8f9fa;
             color: black;
             font-weight: bold;
             text-align: center;
-            font-size: 8pt;
+            font-size: 10pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
             padding: 0;
             text-align: center;
-            font-size: 7pt;
+            font-size: 9pt;
             vertical-align: middle;
             background: white;
         }
@@ -117,45 +117,45 @@ $html = '
         }
         .teams {
             font-weight: bold;
-            font-size: 9pt;
+            font-size: 12pt;
             text-align: center;
             margin: 0;
-            line-height: 1;
+            line-height: 1.1;
         }
         .date-time {
-            font-size: 9pt;
+            font-size: 12pt;
             color: #333;
             font-weight: bold;
             text-align: center;
             margin: 0;
-            line-height: 1;
+            line-height: 1.1;
         }
         .terrain {
-            font-size: 9pt;
+            font-size: 12pt;
             color: #666;
             font-weight: bold;
             text-align: center;
             margin: 0;
-            line-height: 1;
+            line-height: 1.1;
         }
         .arbitre-list {
             text-align: center;
-            font-size: 9pt;
+            font-size: 12pt;
         }
         .arbitre-item {
-            margin-bottom: 0;
+            margin-bottom: 1px;
             font-weight: bold;
             text-align: left;
-            padding-left: 0;
-            line-height: 1;
+            padding-left: 3px;
+            line-height: 1.1;
         }
         .arbitre-item strong {
             color: black;
-            margin-right: 0;
+            margin-right: 3px;
         }
         .logo {
-            height: 40px;
-            margin-right: 5px;
+            height: 60px;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -187,10 +187,16 @@ $html = '
         <tbody>
             <tr>
                 <td class="date-terrain">
-                    <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div><div class="date-time">' . $match['heure_match'] . '</div><div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div><div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
+                    <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div>
+                    <div class="date-time">' . $match['heure_match'] . '</div>
+                    <div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div>
+                    <div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
                 </td>
                 <td class="rencontre">
-                    <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div><div class="teams">Vs</div><div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div><div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
+                    <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div>
+                    <div class="teams">Vs</div>
+                    <div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div>
+                    <div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
                 </td>
                 <td class="arbitres">
                     <div class="arbitre-list">';
@@ -222,7 +228,9 @@ foreach ($arbitres_data as $field => $arbitre) {
     }
 }
 
-$html .= '</div></td>
+    $html .= '
+                    </div>
+                </td>
                 <td class="scra">
                     <div style="font-size: 10pt; font-weight: bold;">DAKAR</div>
                 </td>
