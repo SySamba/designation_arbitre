@@ -91,7 +91,7 @@ $html = '
             margin: 0;
         }
         .designation-table {
-            width: 95%;
+            width: 75%;
             border-collapse: collapse;
             margin-top: 2px;
             margin-left: auto;
