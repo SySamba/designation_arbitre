@@ -286,8 +286,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
             <div class="container-fluid">
                 <a class="navbar-brand" href="dashboard.php" title="Retour à l'accueil">
                     <img src="logo.jpg" alt="Logo" style="height: 40px; margin-right: 10px;">
-                    <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
-                    <small class="d-none d-md-inline" style="font-size: 0.8rem; opacity: 0.8; margin-left: 0.5rem;">(Cliquez pour retourner à l'accueil)</small>
+                    <span style="margin-left: 0.5rem;">Matches</span>
                 </a>
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link" href="dashboard.php">
