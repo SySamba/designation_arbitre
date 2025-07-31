@@ -40,62 +40,62 @@ $html = '
     <style>
         @page {
             size: A4 landscape;
-            margin: 1.5cm;
+            margin: 0.5cm;
         }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background: white;
-            font-size: 10pt;
-            line-height: 1.2;
+            font-size: 9pt;
+            line-height: 1.1;
         }
         .header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             background: white;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
         }
         .header h1 {
             margin: 0;
-            font-size: 14pt;
+            font-size: 12pt;
             font-weight: bold;
             text-transform: uppercase;
         }
         .header h2 {
-            margin: 2px 0 0 0;
-            font-size: 12pt;
+            margin: 1px 0 0 0;
+            font-size: 10pt;
             font-weight: bold;
         }
         .season {
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: bold;
             text-align: center;
-            margin: 10px 0;
+            margin: 5px 0;
         }
         .designation-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 5px;
             background: white;
             border: 1px solid #333;
         }
         .designation-table th {
             border: 1px solid #333;
-            padding: 6px 4px;
+            padding: 2px 3px;
             background: #f8f9fa;
             color: black;
             font-weight: bold;
             text-align: center;
-            font-size: 10pt;
+            font-size: 9pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
-            padding: 4px 3px;
+            padding: 1px 2px;
             text-align: center;
-            font-size: 9pt;
+            font-size: 8pt;
             vertical-align: middle;
             background: white;
         }
@@ -117,44 +117,47 @@ $html = '
         }
         .teams {
             font-weight: bold;
-            font-size: 12pt;
+            font-size: 10pt;
             text-align: center;
+            margin: 0;
         }
         .date-time {
-            font-size: 12pt;
+            font-size: 10pt;
             color: #333;
             font-weight: bold;
             text-align: center;
+            margin: 0;
         }
         .terrain {
-            font-size: 12pt;
+            font-size: 10pt;
             color: #666;
             font-weight: bold;
             text-align: center;
+            margin: 0;
         }
         .arbitre-list {
             text-align: center;
-            font-size: 12pt;
+            font-size: 10pt;
         }
         .arbitre-item {
-            margin-bottom: 2px;
+            margin-bottom: 0;
             font-weight: bold;
             text-align: left;
-            padding-left: 5px;
+            padding-left: 3px;
         }
         .arbitre-item strong {
             color: black;
-            margin-right: 4px;
+            margin-right: 2px;
         }
         .logo {
-            height: 60px;
-            margin-right: 15px;
+            height: 50px;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
             <img src="' . __DIR__ . '/logo.jpg" alt="Logo" class="logo">
             <div>
                 <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
@@ -163,8 +166,8 @@ $html = '
                 <div class="season">2025-2026</div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 15px; background: white; padding: 10px; border: 1px solid #ddd;">
-            <h3 style="margin: 0; font-size: 12pt; font-weight: bold; color: black;">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</h3>
+        <div style="text-align: center; margin-top: 5px; background: white; padding: 5px; border: 1px solid #ddd;">
+            <h3 style="margin: 0; font-size: 10pt; font-weight: bold; color: black;">Compétition : ' . htmlspecialchars($match['nom_competition']) . '</h3>
         </div>
     </div>
 
