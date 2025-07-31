@@ -75,9 +75,11 @@ $html = '
             margin: 2px 0;
         }
         .designation-table {
-            width: 100%;
+            width: 95%;
             border-collapse: collapse;
             margin-top: 2px;
+            margin-left: auto;
+            margin-right: auto;
             background: white;
             border: 1px solid #333;
         }
@@ -125,7 +127,7 @@ $html = '
         .date-time {
             font-size: 12pt;
             color: #333;
-            font-weight: bold;
+            font-weight: normal;
             text-align: center;
             margin: 0;
             line-height: 1.1;
@@ -133,7 +135,7 @@ $html = '
         .terrain {
             font-size: 12pt;
             color: #666;
-            font-weight: bold;
+            font-weight: normal;
             text-align: center;
             margin: 0;
             line-height: 1.1;
@@ -144,7 +146,7 @@ $html = '
         }
         .arbitre-item {
             margin-bottom: 1px;
-            font-weight: bold;
+            font-weight: normal;
             text-align: left;
             padding-left: 3px;
             line-height: 1.1;
@@ -152,6 +154,7 @@ $html = '
         .arbitre-item strong {
             color: black;
             margin-right: 3px;
+            font-weight: normal;
         }
         .logo {
             height: 60px;
