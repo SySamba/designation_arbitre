@@ -144,12 +144,12 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             background: var(--dark-bg);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 8px;
             font-weight: 600;
         }
 
         .table td {
-            padding: 15px;
+            padding: 8px;
             border-bottom: 1px solid #e2e8f0;
             vertical-align: middle;
         }
@@ -170,19 +170,24 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .match-info {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
+            margin-bottom: 2px;
+            line-height: 1.2;
         }
 
         .match-teams {
-            
             color: var(--text-dark);
-            font-size: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+            line-height: 1.2;
         }
 
         .match-date {
             font-weight: 600;
             color: var(--primary-color);
+            margin-bottom: 2px;
+            line-height: 1.2;
         }
 
         .back-btn {
@@ -214,6 +219,23 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             font-size: 3rem;
             margin-bottom: 20px;
             opacity: 0.5;
+        }
+
+        /* Réduction des espaces pour les colonnes spécifiques */
+        .table td:nth-child(3) {
+            padding: 4px 8px;
+        }
+        
+        .table td:nth-child(5) {
+            padding: 4px 8px;
+        }
+        
+        /* Réduction des espaces pour les divs dans les colonnes Rencontre et Arbitres */
+        .table td:nth-child(3) .match-teams,
+        .table td:nth-child(3) .match-info,
+        .table td:nth-child(5) .match-info {
+            margin-bottom: 1px;
+            line-height: 1.1;
         }
     </style>
 </head>
