@@ -88,86 +88,213 @@ try {
     <html>
     <head>
         <title>Désignation d'Arbitrage</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background: white;
+                font-size: 12pt;
+                line-height: 1.2;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 3px;
+                background: white;
+                padding: 5px;
+                border: 1px solid #ddd;
+            }
+            .header h1 {
+                margin: 0;
+                font-size: 14pt;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            .header h2 {
+                margin: 0;
+                font-size: 12pt;
+                font-weight: bold;
+            }
+            .season {
+                font-size: 12pt;
+                font-weight: bold;
+                text-align: center;
+                margin: 2px 0;
+            }
+            .designation-table {
+                width: 95%;
+                border-collapse: collapse;
+                margin-top: 2px;
+                margin-left: auto;
+                margin-right: auto;
+                background: white;
+                border: 1px solid #333;
+            }
+            .designation-table th {
+                border: 1px solid #333;
+                padding: 1px;
+                background: #f8f9fa;
+                color: black;
+                font-weight: bold;
+                text-align: center;
+                font-size: 12pt;
+                vertical-align: middle;
+            }
+            .designation-table td {
+                border: 1px solid #333;
+                padding: 0;
+                text-align: center;
+                font-size: 11pt;
+                vertical-align: middle;
+                background: white;
+            }
+            .date-terrain {
+                text-align: center;
+                width: 20%;
+            }
+            .rencontre {
+                text-align: center;
+                width: 30%;
+            }
+            .arbitres {
+                text-align: center;
+                width: 40%;
+            }
+            .scra {
+                text-align: center;
+                width: 10%;
+            }
+            .teams {
+                font-weight: bold;
+                font-size: 14pt;
+                text-align: center;
+                margin: 0;
+                line-height: 1.1;
+            }
+            .date-time {
+                font-size: 14pt;
+                color: #333;
+                font-weight: normal;
+                text-align: center;
+                margin: 0;
+                line-height: 1.1;
+            }
+            .terrain {
+                font-size: 14pt;
+                color: #666;
+                font-weight: normal;
+                text-align: center;
+                margin: 0;
+                line-height: 1.1;
+            }
+            .arbitre-list {
+                text-align: center;
+                font-size: 14pt;
+            }
+            .arbitre-item {
+                margin-bottom: 1px;
+                font-weight: normal;
+                text-align: left;
+                padding-left: 3px;
+                line-height: 1.1;
+                font-size: 13pt;
+            }
+            .arbitre-item strong {
+                color: black;
+                margin-right: 3px;
+                font-weight: normal;
+            }
+        </style>
     </head>
     <body>
-        <h2>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h2>
-        <h3>COMMISSION CENTRALE DES ARBITRES</h3>
-        <h3>COMMISSION DE DESIGNATION S/CRA DAKAR 2025-2026</h3>
-        
-        <h4>DÉSIGNATION D'ARBITRAGE</h4>
-        
-        <table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse; width: 100%; font-size: 12px; line-height: 1.2;'>
-            <tr>
-                <th style='padding: 2px; font-size: 11px;'>Date/Terrain</th>
-                <th style='padding: 2px; font-size: 11px;'>Rencontre</th>
-                <th style='padding: 2px; font-size: 11px;'>Arbitre/Assistants</th>
-            </tr>
-            <tr>
-                <td style='padding: 1px; font-size: 10px;'><strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br><strong>" . $match['heure_match'] . "</strong><br><strong>Ville : " . $match['ville'] . "</strong><br><strong>Stade : " . $match['stade'] . "</strong></td>
-                <td style='padding: 1px; font-size: 10px;'><strong>" . $match['equipe_a_nom'] . "</strong><br><strong>VS</strong><br><strong>" . $match['equipe_b_nom'] . "</strong><br><strong>Tour : " . $match['tour'] . "</strong></td>
-                <td style='padding: 1px; font-size: 10px;'>";
+        <div class='header'>
+            <div style='display: flex; align-items: center; justify-content: center; margin-bottom: 3px;'>
+                <div>
+                    <h1>FÉDÉRATION SÉNÉGALAISE DE FOOTBALL</h1>
+                    <h2>COMMISSION CENTRALE DES ARBITRES</h2>
+                    <h2>COMMISSION DE DESIGNATION S/CRA DAKAR</h2>
+                    <div class='season'>2025-2026</div>
+                </div>
+            </div>
+            <div style='text-align: center; margin-top: 3px; background: white; padding: 3px; border: 1px solid #ddd;'>
+                <h3 style='margin: 0; font-size: 10pt; font-weight: bold; color: black;'>Compétition : " . htmlspecialchars($match['nom_competition']) . "</h3>
+            </div>
+        </div>
+
+        <table class='designation-table'>
+            <thead>
+                <tr>
+                    <th class='date-terrain'>DATES/TERRAIN</th>
+                    <th class='rencontre'>RENCONTRE</th>
+                    <th class='arbitres'>ARBITRE/ASSISTANTS</th>
+                    <th class='scra'>S/CRA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class='date-terrain'>
+                        <div class='date-time'>" . date('d-m-Y', strtotime($match['date_match'])) . "</div>
+                        <div class='date-time'>" . $match['heure_match'] . "</div>
+                        <div class='terrain'>Ville : " . htmlspecialchars($match['ville']) . "</div>
+                        <div class='terrain'>Stade : " . htmlspecialchars($match['stade']) . "</div>
+                    </td>
+                    <td class='rencontre'>
+                        <div class='teams'>" . htmlspecialchars($match['equipe_a_nom']) . "</div>
+                        <div class='teams'>Vs</div>
+                        <div class='teams'>" . htmlspecialchars($match['equipe_b_nom']) . "</div>
+                        <div class='terrain'>Tour : " . htmlspecialchars($match['tour']) . "</div>
+                    </td>
+                    <td class='arbitres'>
+                        <div class='arbitre-list'>";
     
-    // Ajouter les noms des officiels avec labels
-    if ($match['arbitre_nom']) {
-        $message .= "<strong>AR : " . $match['arbitre_nom'] . " " . $match['arbitre_prenom'] . "</strong>";
-        
-        // Ajouter la photo de l'arbitre principal s'il en a une
-        if ($match['arbitre_id']) {
-            $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
-            if ($arbitre && $arbitre['photo']) {
-                $photo_path = 'photos_arbitres/' . $arbitre['photo'];
-                error_log("Tentative d'ajout de photo pour arbitre ID {$match['arbitre_id']}: $photo_path");
-                if (file_exists($photo_path)) {
-                    $message .= " <img src='cid:arbitre_photo' style='width: 40px; height: 40px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-left: 10px; border: 2px solid #ddd;'>";
-                    error_log("Photo ajoutée avec succès: $photo_path");
-                } else {
-                    error_log("Photo non trouvée: $photo_path");
-                }
-            } else {
-                error_log("Arbitre ID {$match['arbitre_id']} n'a pas de photo: " . ($arbitre['photo'] ?? 'null'));
-            }
+    // Générer les noms d'arbitres avec labels
+    $arbitres_roles = [
+        'arbitre_id' => 'AR',
+        'assistant_1_id' => 'AA1',
+        'assistant_2_id' => 'AA2',
+        'officiel_4_id' => '4ème',
+        'assesseur_id' => 'ASS'
+    ];
+
+    $arbitres_data = [
+        'arbitre_id' => ['nom' => $match['arbitre_nom'], 'prenom' => $match['arbitre_prenom']],
+        'assistant_1_id' => ['nom' => $match['assistant1_nom'], 'prenom' => $match['assistant1_prenom']],
+        'assistant_2_id' => ['nom' => $match['assistant2_nom'], 'prenom' => $match['assistant2_prenom']],
+        'officiel_4_id' => ['nom' => $match['officiel4_nom'], 'prenom' => $match['officiel4_prenom']],
+        'assesseur_id' => ['nom' => $match['assesseur_nom'], 'prenom' => $match['assesseur_prenom']]
+    ];
+
+    // Générer les noms d'arbitres avec labels
+    foreach ($arbitres_data as $field => $arbitre) {
+        $role_label = $arbitres_roles[$field];
+        if ($arbitre['nom']) {
+            $message .= "<div class='arbitre-item'><strong>" . $role_label . " :</strong> " . htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']) . "</div>";
+        } else {
+            $message .= "<div class='arbitre-item'><strong>" . $role_label . " :</strong> -</div>";
         }
-        $message .= "<br>";
     }
-    if ($match['assistant1_nom']) {
-        $message .= "<strong>AA1 : " . $match['assistant1_nom'] . " " . $match['assistant1_prenom'] . "</strong><br>";
-    }
-    if ($match['assistant2_nom']) {
-        $message .= "<strong>AA2 : " . $match['assistant2_nom'] . " " . $match['assistant2_prenom'] . "</strong><br>";
-    }
-    if ($match['officiel4_nom']) {
-        $message .= "<strong>4ème : " . $match['officiel4_nom'] . " " . $match['officiel4_prenom'] . "</strong><br>";
-    }
-    if ($match['assesseur_nom']) {
-        $message .= "<strong>ASS : " . $match['assesseur_nom'] . " " . $match['assesseur_prenom'] . "</strong><br>";
-    }
-    
-    $message .= "</td></tr></table><p><strong>Veuillez confirmer votre disponibilité.</strong></p><p>Cordialement,<br>Commission de Désignation S/CRA Dakar</p>
+
+    $message .= "
+                        </div>
+                    </td>
+                    <td class='scra'>
+                        <div style='font-size: 10pt; font-weight: bold;'>DAKAR</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p style='text-align: center; margin-top: 10px;'><strong>Veuillez confirmer votre disponibilité.</strong></p>
+        <p style='text-align: center;'>Cordialement,<br>Commission de Désignation S/CRA Dakar</p>
     </body>
     </html>";
     
-    // Préparer les pièces jointes (photo de l'arbitre principal)
-    $attachments = [];
-    if ($match['arbitre_id']) {
-        $arbitre = $arbitreManager->getArbitreById($match['arbitre_id']);
-        if ($arbitre && $arbitre['photo']) {
-            $photo_path = 'photos_arbitres/' . $arbitre['photo'];
-            if (file_exists($photo_path)) {
-                $attachments[] = [
-                    'path' => $photo_path,
-                    'name' => 'arbitre_photo.jpg',
-                    'cid' => 'arbitre_photo'
-                ];
-            }
-        }
-    }
+
     
-    // En-têtes pour l'email HTML avec pièces jointes
-    $boundary = md5(time());
+    // En-têtes pour l'email HTML
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "From: Commission de Désignation <noreply@scra-dakar.com>\r\n";
     $headers .= "Reply-To: noreply@scra-dakar.com\r\n";
-    $headers .= "Content-Type: multipart/related; boundary=\"" . $boundary . "\"\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     
     // Envoyer l'email à tous les destinataires
     $success = true;
@@ -176,25 +303,8 @@ try {
     foreach ($emails as $index => $email) {
         $to = $email;
         
-        // Construire le message multipart avec pièces jointes
-        $body = "--" . $boundary . "\r\n";
-        $body .= "Content-Type: text/html; charset=UTF-8\r\n";
-        $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-        $body .= "Cher(e) " . $noms[$index] . ",\n\n" . $message . "\r\n\r\n";
-        
-        // Ajouter les pièces jointes
-        foreach ($attachments as $attachment) {
-            if (file_exists($attachment['path'])) {
-                $body .= "--" . $boundary . "\r\n";
-                $body .= "Content-Type: image/jpeg; name=\"" . $attachment['name'] . "\"\r\n";
-                $body .= "Content-Transfer-Encoding: base64\r\n";
-                $body .= "Content-ID: <" . $attachment['cid'] . ">\r\n";
-                $body .= "Content-Disposition: inline; filename=\"" . $attachment['name'] . "\"\r\n\r\n";
-                $body .= chunk_split(base64_encode(file_get_contents($attachment['path']))) . "\r\n";
-            }
-        }
-        
-        $body .= "--" . $boundary . "--\r\n";
+        // Construire le message HTML simple
+        $body = "Cher(e) " . $noms[$index] . ",\n\n" . $message;
         
         if (!mail($to, $sujet, $body, $headers)) {
             $success = false;
