@@ -864,7 +864,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <strong style="font-size: 1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br><span style="font-size: 0.9rem; color: #666;"><?php echo $match['heure_match']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Ville : <?php echo $match['ville']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Stade : <?php echo $match['stade']; ?></span>
                                             </td>
                                             <td style="padding: 4px;">
-                                                <div><strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_a_nom']; ?></strong><br><span style="font-size: 0.9rem; color: #666;">VS</span><br><strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_b_nom']; ?></strong><br><span style="font-size: 0.9rem; font-weight: bold; color: black;">Tour : <?php echo $match['tour']; ?></span></div>
+                                                <div><strong style="font-size: 1.1rem; color: black; font-weight: bold;"><?php echo $match['equipe_a_nom']; ?></strong><br><span style="font-size: 0.9rem; color: #666;">VS</span><br><strong style="font-size: 1.1rem; color: black; font-weight: bold;"><?php echo $match['equipe_b_nom']; ?></strong><br><span style="font-size: 0.9rem; color: black;">Tour : <?php echo $match['tour']; ?></span></div>
                                             </td>
                                             <td style="padding: 4px;">
                                                 <div style="font-size: 0.9rem;">
