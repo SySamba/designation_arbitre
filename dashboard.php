@@ -622,6 +622,10 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
                 </a>
                                             <div class="navbar-nav ms-auto">
+                                <a class="nav-link" href="ajouter_match.php">
+                                    <i class="fas fa-plus"></i> 
+                                    <span style="margin-left: 0.3rem;">Ajouter un Match</span>
+                                </a>
                                 <a class="nav-link" href="telecharger_multiple.php">
                                     <i class="fas fa-download"></i> 
                                     <span style="margin-left: 0.3rem;">Téléchargement Multiple</span>
@@ -652,41 +656,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 <?php endif; ?>
 
-                <!-- Boutons d'action rapide -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3 mb-2">
-                                        <a href="telecharger_multiple.php" class="btn btn-primary w-100">
-                                            <i class="fas fa-download me-2"></i>
-                                            Télécharger Désignations
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-2">
-                                        <a href="arbitres.php" class="btn btn-info w-100">
-                                            <i class="fas fa-user-tie me-2"></i>
-                                            Gérer les Arbitres
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-2">
-                                        <a href="equipes.php" class="btn btn-success w-100">
-                                            <i class="fas fa-users me-2"></i>
-                                            Gérer les Équipes
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-2">
-                                        <a href="ajouter_match.php" class="btn btn-warning w-100">
-                                            <i class="fas fa-plus me-2"></i>
-                                            Ajouter un Match
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
 
 
