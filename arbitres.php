@@ -546,11 +546,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark mb-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="dashboard.php">
+                <a class="navbar-brand" href="dashboard.php" title="Retour à l'accueil">
                     <img src="logo.jpg" alt="Logo" style="height: 40px; margin-right: 10px;">
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
+                    <small class="d-none d-md-inline" style="font-size: 0.8rem; opacity: 0.8; margin-left: 0.5rem;">(Cliquez pour retourner à l'accueil)</small>
                 </a>
                 <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="dashboard.php">
+                        <i class="fas fa-home"></i> 
+                        <span style="margin-left: 0.3rem;">Accueil</span>
+                    </a>
                     <a class="nav-link" href="ajouter_arbitre.php">
                         <i class="fas fa-plus"></i> 
                         <span style="margin-left: 0.3rem;">Ajouter un Arbitre</span>

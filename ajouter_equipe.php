@@ -113,8 +113,12 @@ if ($_POST && isset($_POST['action']) && $_POST['action'] == 'ajouter_equipe') {
             </a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="dashboard.php">
-                    <i class="fas fa-tachometer-alt me-1"></i>
-                    Dashboard
+                    <i class="fas fa-home me-1"></i>
+                    Accueil
+                </a>
+                <a class="nav-link" href="equipes.php">
+                    <i class="fas fa-users me-1"></i>
+                    Équipes
                 </a>
                 <a class="nav-link" href="logout.php">
                     <i class="fas fa-sign-out-alt me-1"></i>
