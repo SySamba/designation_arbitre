@@ -175,7 +175,7 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .match-teams {
-            font-weight: bold;
+            
             color: var(--text-dark);
             font-size: 1rem;
         }
