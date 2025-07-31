@@ -551,18 +551,22 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
                 </a>
                 <div class="navbar-nav ms-auto">
-                                                    <a class="nav-link active" href="arbitres.php">
-                                    <i class="fas fa-user-tie"></i> 
-                                    <span style="margin-left: 0.3rem;">Arbitres</span>
-                                </a>
-                                <a class="nav-link" href="equipes.php">
-                                    <i class="fas fa-users"></i> 
-                                    <span style="margin-left: 0.3rem;">Équipes</span>
-                                </a>
-                                <a class="nav-link" href="logout.php" onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?')">
-                                    <i class="fas fa-sign-out-alt"></i> 
-                                    <span style="margin-left: 0.3rem;">Déconnexion</span>
-                                </a>
+                    <a class="nav-link" href="ajouter_arbitre.php">
+                        <i class="fas fa-plus"></i> 
+                        <span style="margin-left: 0.3rem;">Ajouter un Arbitre</span>
+                    </a>
+                    <a class="nav-link active" href="arbitres.php">
+                        <i class="fas fa-user-tie"></i> 
+                        <span style="margin-left: 0.3rem;">Arbitres</span>
+                    </a>
+                    <a class="nav-link" href="equipes.php">
+                        <i class="fas fa-users"></i> 
+                        <span style="margin-left: 0.3rem;">Équipes</span>
+                    </a>
+                    <a class="nav-link" href="logout.php" onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?')">
+                        <i class="fas fa-sign-out-alt"></i> 
+                        <span style="margin-left: 0.3rem;">Déconnexion</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -577,98 +581,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
                     </div>
                 <?php endif; ?>
 
-                <!-- Formulaire d'ajout/modification d'arbitre -->
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="mb-0">
-                            <i class="fas fa-<?php echo $arbitre_modifier ? 'edit' : 'plus-circle'; ?>"></i> 
-                            <span style="margin-left: 0.5rem;"><?php echo $arbitre_modifier ? 'Modifier un Arbitre' : 'Ajouter un Arbitre'; ?></span>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="" enctype="multipart/form-data">
-                            <input type="hidden" name="action" value="<?php echo $arbitre_modifier ? 'modifier_arbitre' : 'ajouter_arbitre'; ?>">
-                            <?php if ($arbitre_modifier): ?>
-                                <input type="hidden" name="arbitre_id" value="<?php echo $arbitre_modifier['id']; ?>">
-                            <?php endif; ?>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="nom" class="form-label">Nom</label>
-                                    <input type="text" class="form-control" name="nom" 
-                                           value="<?php echo $arbitre_modifier ? $arbitre_modifier['nom'] : ''; ?>" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="prenom" class="form-label">Prénom</label>
-                                    <input type="text" class="form-control" name="prenom" 
-                                           value="<?php echo $arbitre_modifier ? $arbitre_modifier['prenom'] : ''; ?>" required>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" 
-                                           value="<?php echo $arbitre_modifier ? $arbitre_modifier['email'] : ''; ?>">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="telephone" class="form-label">Téléphone (Sénégal)</label>
-                                    <input type="tel" class="form-control" name="telephone" 
-                                           pattern="7[0-9]{8}" 
-                                           placeholder="7XXXXXXXX" 
-                                           title="Numéro sénégalais: 7 suivi de 8 chiffres"
-                                           value="<?php echo $arbitre_modifier ? $arbitre_modifier['telephone'] : ''; ?>">
-                                    <small class="form-text text-muted">Format: 7XXXXXXXX (ex: 701234567)</small>
-                                </div>
-                            </div>
-
-                            <div class="row mt-3">
-                                <div class="col-md-4">
-                                    <label for="fonction" class="form-label">Fonction</label>
-                                    <select class="form-select" name="fonction" required onchange="togglePhotoField(this)">
-                                        <option value="Arbitre" <?php echo ($arbitre_modifier && $arbitre_modifier['fonction'] == 'Arbitre') ? 'selected' : ''; ?>>Arbitre</option>
-                                        <option value="Assesseur" <?php echo ($arbitre_modifier && $arbitre_modifier['fonction'] == 'Assesseur') ? 'selected' : ''; ?>>Assesseur</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="photo" class="form-label">Photo (Arbitres uniquement)</label>
-                                    <input type="file" class="form-control" name="photo" accept="image/*" 
-                                           onchange="previewPhoto(this)">
-                                    <input type="hidden" name="photo_actuelle" value="<?php echo $arbitre_modifier ? ($arbitre_modifier['photo'] ?? '') : ''; ?>">
-                                    <?php if ($arbitre_modifier && $arbitre_modifier['photo']): ?>
-                                        <small class="form-text text-muted">Photo actuelle: <?php echo $arbitre_modifier['photo']; ?></small>
-                                        <br><img src="photos_arbitres/<?php echo $arbitre_modifier['photo']; ?>" 
-                                               alt="Photo actuelle" class="img-thumbnail mt-2" style="width: 100px; height: 100px; object-fit: cover;">
-                                    <?php endif; ?>
-                                    <small class="form-text text-muted">Formats acceptés: JPG, PNG, GIF</small>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="adresse" class="form-label">Adresse</label>
-                                    <input type="text" class="form-control" name="adresse" 
-                                           value="<?php echo $arbitre_modifier ? $arbitre_modifier['adresse'] : ''; ?>">
-                                </div>
-                            </div>
-
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-save"></i> 
-                                        <?php echo $arbitre_modifier ? 'Modifier' : 'Ajouter'; ?> l'Arbitre
-                                    </button>
-                                    <?php if ($arbitre_modifier): ?>
-                                        <a href="arbitres.php" class="btn btn-secondary ms-2">
-                                            <i class="fas fa-times"></i> Annuler
-                                        </a>
-                                    <?php else: ?>
-                                        <button type="reset" class="btn btn-secondary ms-2">
-                                            <i class="fas fa-undo"></i> Réinitialiser
-                                        </button>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
                 <!-- Liste des arbitres -->
                 <div class="card">

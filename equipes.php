@@ -289,6 +289,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
                     <span style="margin-left: 0.5rem;">Système de Désignation d'Arbitres</span>
                 </a>
                 <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="ajouter_equipe.php">
+                        <i class="fas fa-plus"></i> 
+                        <span style="margin-left: 0.3rem;">Ajouter une Équipe</span>
+                    </a>
                     <a class="nav-link" href="arbitres.php">
                         <i class="fas fa-user-tie"></i> 
                         <span style="margin-left: 0.3rem;">Arbitres</span>
@@ -315,54 +319,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'modifier' && isset($_GET['id']
                     </div>
                 <?php endif; ?>
 
-                <!-- Formulaire d'ajout/modification d'équipe -->
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="mb-0">
-                            <i class="fas fa-<?php echo $equipe_modifier ? 'edit' : 'plus-circle'; ?>"></i> 
-                            <span style="margin-left: 0.5rem;"><?php echo $equipe_modifier ? 'Modifier une Équipe' : 'Ajouter une Équipe'; ?></span>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="">
-                            <input type="hidden" name="action" value="<?php echo $equipe_modifier ? 'modifier_equipe' : 'ajouter_equipe'; ?>">
-                            <?php if ($equipe_modifier): ?>
-                                <input type="hidden" name="equipe_id" value="<?php echo $equipe_modifier['id']; ?>">
-                            <?php endif; ?>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="nom" class="form-label">Nom de l'équipe</label>
-                                    <input type="text" class="form-control" name="nom" 
-                                           value="<?php echo $equipe_modifier ? $equipe_modifier['nom'] : ''; ?>" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="ville" class="form-label">Zone</label>
-                                    <input type="text" class="form-control" name="ville" 
-                                           value="<?php echo $equipe_modifier ? $equipe_modifier['ville'] : ''; ?>" required>
-                                </div>
-                            </div>
 
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-save"></i> 
-                                        <?php echo $equipe_modifier ? 'Modifier' : 'Ajouter'; ?> l'Équipe
-                                    </button>
-                                    <?php if ($equipe_modifier): ?>
-                                        <a href="equipes.php" class="btn btn-secondary ms-2">
-                                            <i class="fas fa-times"></i> Annuler
-                                        </a>
-                                    <?php else: ?>
-                                        <button type="reset" class="btn btn-secondary ms-2">
-                                            <i class="fas fa-undo"></i> Réinitialiser
-                                        </button>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
                 <!-- Liste des équipes -->
                 <div class="card">
