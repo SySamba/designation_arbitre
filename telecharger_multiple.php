@@ -116,6 +116,11 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             border: none;
         }
 
+        .btn-sm {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         }
@@ -170,8 +175,9 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .match-teams {
-            font-weight: 600;
+            font-weight: bold;
             color: var(--text-dark);
+            font-size: 1rem;
         }
 
         .match-date {
@@ -300,11 +306,11 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="mb-0"><i class="fas fa-list me-2"></i>Matchs du Tour</h3>
                         <div>
-                            <button type="button" class="btn btn-outline-light me-2" onclick="selectAll()">
-                                <i class="fas fa-check-double me-1"></i>Tout sélectionner
+                            <button type="button" class="btn btn-outline-light btn-sm me-1" onclick="selectAll()" title="Tout sélectionner">
+                                <i class="fas fa-check-double"></i>
                             </button>
-                            <button type="button" class="btn btn-outline-light" onclick="deselectAll()">
-                                <i class="fas fa-times me-1"></i>Tout désélectionner
+                            <button type="button" class="btn btn-outline-light btn-sm" onclick="deselectAll()" title="Tout désélectionner">
+                                <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
@@ -394,8 +400,8 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
                             </div>
                             
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-success btn-lg" id="downloadBtn" disabled>
-                                    <i class="fas fa-download me-2"></i>Télécharger les matchs sélectionnés
+                                <button type="submit" class="btn btn-success" id="downloadBtn" disabled>
+                                    <i class="fas fa-download me-1"></i>Télécharger
                                 </button>
                             </div>
                         </form>
@@ -444,10 +450,10 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             
             if (checkedBoxes.length > 0) {
                 downloadBtn.disabled = false;
-                downloadBtn.innerHTML = `<i class="fas fa-download me-2"></i>Télécharger ${checkedBoxes.length} match(s) sélectionné(s)`;
+                downloadBtn.innerHTML = `<i class="fas fa-download me-1"></i>Télécharger (${checkedBoxes.length})`;
             } else {
                 downloadBtn.disabled = true;
-                downloadBtn.innerHTML = `<i class="fas fa-download me-2"></i>Télécharger les matchs sélectionnés`;
+                downloadBtn.innerHTML = `<i class="fas fa-download me-1"></i>Télécharger`;
             }
         }
 
