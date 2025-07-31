@@ -151,6 +151,7 @@ $html = '
             padding-left: 3px;
             line-height: 1.1;
             font-size: 13pt;
+            color: black;
         }
         .arbitre-item strong {
             color: black;

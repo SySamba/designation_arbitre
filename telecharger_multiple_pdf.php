@@ -146,6 +146,7 @@ $html = '
             line-height: 1.1;
             font-weight: normal;
             font-size: 13pt;
+            color: black;
         }
         .arbitre-item strong {
             color: black;
