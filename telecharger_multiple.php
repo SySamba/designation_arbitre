@@ -57,22 +57,22 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: var(--border-radius);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             box-shadow: var(--box-shadow);
         }
 
         .header h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
         }
 
         .header p {
-            margin: 8px 0 0 0;
+            margin: 10px 0 0 0;
             opacity: 0.9;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .card {
@@ -87,12 +87,12 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         .card-header {
             background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
             color: white;
-            padding: 12px 15px;
+            padding: 20px;
             border: none;
         }
 
         .card-body {
-            padding: 15px;
+            padding: 25px;
         }
 
         .form-select {
@@ -109,12 +109,11 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .btn {
-            border-radius: 6px;
-            padding: 8px 16px;
-            font-weight: 500;
+            border-radius: var(--border-radius);
+            padding: 12px 25px;
+            font-weight: 600;
             transition: var(--transition);
             border: none;
-            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -140,16 +139,14 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             background: var(--dark-bg);
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 15px;
             font-weight: 600;
-            font-size: 0.9rem;
         }
 
         .table td {
-            padding: 8px 12px;
+            padding: 15px;
             border-bottom: 1px solid #e2e8f0;
             vertical-align: middle;
-            font-size: 0.85rem;
         }
 
         .table tbody tr:hover {
@@ -157,9 +154,9 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .form-check-input {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
         }
 
         .form-check-input:checked {
@@ -168,29 +165,24 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .match-info {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            margin-bottom: 2px;
         }
 
         .match-teams {
             font-weight: 600;
             color: var(--text-dark);
-            font-size: 0.9rem;
         }
 
         .match-date {
             font-weight: 600;
             color: var(--primary-color);
-            font-size: 0.9rem;
         }
 
         .back-btn {
             background: var(--text-light);
             color: white;
-            margin-bottom: 15px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            margin-bottom: 20px;
         }
 
         .back-btn:hover {
@@ -201,35 +193,21 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         .selection-info {
             background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
             color: white;
-            padding: 12px;
+            padding: 15px;
             border-radius: var(--border-radius);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .no-matches {
             text-align: center;
-            padding: 30px;
+            padding: 50px;
             color: var(--text-light);
         }
 
         .no-matches i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            margin-bottom: 20px;
             opacity: 0.5;
-        }
-
-        .btn-lg {
-            padding: 10px 20px;
-            font-size: 1rem;
-        }
-
-        .btn-sm {
-            padding: 4px 8px;
-            font-size: 0.8rem;
-        }
-
-        .small {
-            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -237,7 +215,7 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1><i class="fas fa-download me-2"></i>Téléchargement Multiple</h1>
+            <h1><i class="fas fa-download me-3"></i>Téléchargement Multiple</h1>
             <p>Sélectionnez un tour et choisissez les matchs à télécharger</p>
         </div>
 
@@ -279,8 +257,8 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         <?php if (!empty($tour_selectionne)): ?>
             <!-- Informations de sélection -->
             <div class="selection-info">
-                <h5 class="mb-1"><i class="fas fa-info-circle me-1"></i>Tour : <?= htmlspecialchars($tour_selectionne) ?></h5>
-                <p class="mb-0 small">Sélectionnez les matchs à télécharger</p>
+                <h4><i class="fas fa-info-circle me-2"></i>Tour sélectionné : <?= htmlspecialchars($tour_selectionne) ?></h4>
+                <p class="mb-0">Sélectionnez les matchs que vous souhaitez télécharger</p>
             </div>
 
             <?php if (isset($_GET['error'])): ?>
@@ -322,11 +300,11 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="mb-0"><i class="fas fa-list me-2"></i>Matchs du Tour</h3>
                         <div>
-                            <button type="button" class="btn btn-outline-light btn-sm me-1" onclick="selectAll()">
-                                <i class="fas fa-check-double"></i> Tout
+                            <button type="button" class="btn btn-outline-light me-2" onclick="selectAll()">
+                                <i class="fas fa-check-double me-1"></i>Tout sélectionner
                             </button>
-                            <button type="button" class="btn btn-outline-light btn-sm" onclick="deselectAll()">
-                                <i class="fas fa-times"></i> Aucun
+                            <button type="button" class="btn btn-outline-light" onclick="deselectAll()">
+                                <i class="fas fa-times me-1"></i>Tout désélectionner
                             </button>
                         </div>
                     </div>
@@ -415,9 +393,9 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
                                 </table>
                             </div>
                             
-                            <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-success" id="downloadBtn" disabled>
-                                    <i class="fas fa-download me-1"></i>Télécharger
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-success btn-lg" id="downloadBtn" disabled>
+                                    <i class="fas fa-download me-2"></i>Télécharger les matchs sélectionnés
                                 </button>
                             </div>
                         </form>
@@ -466,10 +444,10 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             
             if (checkedBoxes.length > 0) {
                 downloadBtn.disabled = false;
-                downloadBtn.innerHTML = `<i class="fas fa-download me-1"></i>Télécharger (${checkedBoxes.length})`;
+                downloadBtn.innerHTML = `<i class="fas fa-download me-2"></i>Télécharger ${checkedBoxes.length} match(s) sélectionné(s)`;
             } else {
                 downloadBtn.disabled = true;
-                downloadBtn.innerHTML = `<i class="fas fa-download me-1"></i>Télécharger`;
+                downloadBtn.innerHTML = `<i class="fas fa-download me-2"></i>Télécharger les matchs sélectionnés`;
             }
         }
 
