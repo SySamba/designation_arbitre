@@ -861,7 +861,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <strong style="font-size: 1rem; color: black;"><?php echo $index + 1; ?></strong>
                                             </td>
                                             <td style="padding: 4px;">
-                                                <strong style="font-size: 1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br><span style="font-size: 0.9rem; color: #666;"><?php echo $match['heure_match']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Ville : <?php echo $match['ville']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Stade : <?php echo $match['stade']; ?></span>
+                                                <strong style="font-size: 1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br><span style="font-size: 0.9rem; color: #666;"><?php echo $match['heure_match']; ?></span><br><span style="font-size: 0.9rem; color: black;">Ville : <?php echo $match['ville']; ?></span><br><span style="font-size: 0.9rem; color: black;">Stade : <?php echo $match['stade']; ?></span>
                                             </td>
                                             <td style="padding: 4px;">
                                                 <div><strong style="font-size: 1.1rem; color: black; font-weight: bold;"><?php echo $match['equipe_a_nom']; ?></strong><br><span style="font-size: 0.9rem; color: #666;">VS</span><br><strong style="font-size: 1.1rem; color: black; font-weight: bold;"><?php echo $match['equipe_b_nom']; ?></strong><br><span style="font-size: 0.9rem; color: black;">Tour : <?php echo $match['tour']; ?></span></div>
@@ -869,8 +869,8 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <td style="padding: 4px;">
                                                 <div style="font-size: 0.9rem;">
                                                         <?php if ($match['arbitre_nom']): ?>
-                                                        <div style="font-weight: bold; display: flex; align-items: center; margin-bottom: 1px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">AR :</span>
+                                                        <div style="display: flex; align-items: center; margin-bottom: 1px;">
+                                                            <span style="color: black; margin-right: 5px;">AR :</span>
                                                             <span style="color: black;"><?php echo $match['arbitre_nom'] . ' ' . $match['arbitre_prenom']; ?></span>
                                                             <?php
                                                             // Récupérer la photo de l'arbitre principal
@@ -896,26 +896,26 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant1_nom']): ?>
-                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">AA1 :</span>
+                                                        <div style="color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; margin-right: 5px;">AA1 :</span>
                                                            <?php echo $match['assistant1_nom'] . ' ' . $match['assistant1_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assistant2_nom']): ?>
-                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">AA2 :</span>
+                                                        <div style="color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; margin-right: 5px;">AA2 :</span>
                                                           <?php echo $match['assistant2_nom'] . ' ' . $match['assistant2_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['officiel4_nom']): ?>
-                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">4ème :</span>
+                                                        <div style="color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; margin-right: 5px;">4ème :</span>
                                                          <?php echo $match['officiel4_nom'] . ' ' . $match['officiel4_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($match['assesseur_nom']): ?>
-                                                        <div style="font-weight: bold; color: black; margin-bottom: 1px;">
-                                                            <span style="color: black; font-weight: bold; margin-right: 5px;">ASS :</span>
+                                                        <div style="color: black; margin-bottom: 1px;">
+                                                            <span style="color: black; margin-right: 5px;">ASS :</span>
                                                          <?php echo $match['assesseur_nom'] . ' ' . $match['assesseur_prenom']; ?>
                                                         </div>
                                                     <?php endif; ?>
