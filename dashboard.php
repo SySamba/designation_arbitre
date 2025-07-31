@@ -864,7 +864,7 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <strong style="font-size: 1rem; color: black;"><?php echo date('d/m/Y', strtotime($match['date_match'])); ?></strong><br><span style="font-size: 0.9rem; color: #666;"><?php echo $match['heure_match']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Ville : <?php echo $match['ville']; ?></span><br><span style="font-size: 0.9rem; color: black; font-weight: bold;">Stade : <?php echo $match['stade']; ?></span>
                                             </td>
                                             <td style="padding: 4px;">
-                                                <div><strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_a_nom']; ?></strong><br><span style="font-size: 0.9rem; color: #666;">VS</span><br><strong style="font-size: 1.1rem; color: black;"><?php echo $match['equipe_b_nom']; ?></strong><br><span style="font-size: 0.9rem; font-weight: bold; color: black;">Tour : <?php echo $match['tour']; ?></span></div>
+                                                <div><strong style="font-size: 1.2rem; color: black; font-weight: bold;"><?php echo $match['equipe_a_nom']; ?></strong><br><span style="font-size: 0.9rem; color: #666;">VS</span><br><strong style="font-size: 1.2rem; color: black; font-weight: bold;"><?php echo $match['equipe_b_nom']; ?></strong><br><span style="font-size: 0.9rem; font-weight: bold; color: black;">Tour : <?php echo $match['tour']; ?></span></div>
                                             </td>
                                             <td style="padding: 4px;">
                                                 <div style="font-size: 0.9rem;">
@@ -932,23 +932,23 @@ $ligues = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                             <td style="padding: 4px;">
                                                 <div class="btn-group-vertical" role="group">
-                                                    <a href="modifier_match.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-primary" title="Modifier" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
-                                                        <i class="fas fa-edit"></i> Modifier
+                                                    <a href="modifier_match.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-primary" title="Modifier" style="margin-bottom: 2px; padding: 4px 8px; font-size: 0.8rem;">
+                                                        <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <a href="telecharger_designation.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-info" title="Télécharger PDF" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
-                                                        <i class="fas fa-file-pdf"></i> Télécharger
+                                                    <a href="telecharger_designation.php?id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-info" title="Télécharger PDF" style="margin-bottom: 2px; padding: 4px 8px; font-size: 0.8rem;">
+                                                        <i class="fas fa-file-pdf"></i>
                                                     </a>
                                                     <button type="button" class="btn btn-sm btn-outline-success" 
-                                                            onclick="envoyerEmail(<?php echo $match['id']; ?>)" title="Envoyer par email" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
-                                                        <i class="fas fa-envelope"></i> Email
+                                                            onclick="envoyerEmail(<?php echo $match['id']; ?>)" title="Envoyer par email" style="margin-bottom: 2px; padding: 4px 8px; font-size: 0.8rem;">
+                                                        <i class="fas fa-envelope"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-outline-success" 
-                                                            onclick="envoyerWhatsApp(<?php echo $match['id']; ?>)" title="Envoyer par WhatsApp" style="margin-bottom: 1px; padding: 2px 6px; font-size: 0.8rem;">
-                                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                                            onclick="envoyerWhatsApp(<?php echo $match['id']; ?>)" title="Envoyer par WhatsApp" style="margin-bottom: 2px; padding: 4px 8px; font-size: 0.8rem;">
+                                                        <i class="fab fa-whatsapp"></i>
                                                     </button>
                                                     <a href="?action=supprimer&id=<?php echo $match['id']; ?>" class="btn btn-sm btn-outline-danger" 
-                                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce match ?')" title="Supprimer" style="padding: 2px 6px; font-size: 0.8rem;">
-                                                        <i class="fas fa-trash"></i> Supprimer
+                                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce match ?')" title="Supprimer" style="padding: 4px 8px; font-size: 0.8rem;">
+                                                        <i class="fas fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
