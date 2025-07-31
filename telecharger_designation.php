@@ -187,16 +187,10 @@ $html = '
         <tbody>
             <tr>
                 <td class="date-terrain">
-                    <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div>
-                    <div class="date-time">' . $match['heure_match'] . '</div>
-                    <div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div>
-                    <div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
+                    <div class="date-time">' . date('d-m-Y', strtotime($match['date_match'])) . '</div><div class="date-time">' . $match['heure_match'] . '</div><div class="terrain">Ville : ' . htmlspecialchars($match['ville']) . '</div><div class="terrain">Stade : ' . htmlspecialchars($match['stade']) . '</div>
                 </td>
                 <td class="rencontre">
-                    <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div>
-                    <div class="teams">Vs</div>
-                    <div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div>
-                    <div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
+                    <div class="teams">' . htmlspecialchars($match['equipe_a_nom']) . '</div><div class="teams">Vs</div><div class="teams">' . htmlspecialchars($match['equipe_b_nom']) . '</div><div class="terrain">Tour : ' . htmlspecialchars($match['tour']) . '</div>
                 </td>
                 <td class="arbitres">
                     <div class="arbitre-list">';
@@ -228,9 +222,7 @@ foreach ($arbitres_data as $field => $arbitre) {
     }
 }
 
-$html .= '
-                    </div>
-                </td>
+$html .= '</div></td>
                 <td class="scra">
                     <div style="font-size: 10pt; font-weight: bold;">DAKAR</div>
                 </td>
