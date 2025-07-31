@@ -65,7 +65,7 @@ $html = '
             margin: 0;
             padding: 0;
             background: white;
-            font-size: 10pt;
+            font-size: 12pt;
             line-height: 1.2;
         }
         .header {
@@ -76,17 +76,17 @@ $html = '
         }
         .header h1 {
             margin: 0;
-            font-size: 12pt;
+            font-size: 14pt;
             font-weight: bold;
             text-transform: uppercase;
         }
         .header h2 {
             margin: 0;
-            font-size: 10pt;
+            font-size: 12pt;
             font-weight: bold;
         }
         .season {
-            font-size: 10pt;
+            font-size: 12pt;
             font-weight: bold;
             margin: 0;
         }
@@ -105,39 +105,39 @@ $html = '
             background: #f8f9fa;
             color: black;
             font-weight: bold;
-            font-size: 10pt;
+            font-size: 12pt;
             vertical-align: middle;
         }
         .designation-table td {
             border: 1px solid #333;
             padding: 1px;
-            font-size: 9pt;
+            font-size: 11pt;
             vertical-align: middle;
             background: white;
         }
 
         .teams {
-            font-size: 12pt;
+            font-size: 14pt;
             font-weight: bold;
             margin: 0;
             line-height: 1.1;
         }
         .date-time {
-            font-size: 12pt;
+            font-size: 14pt;
             color: #333;
             font-weight: normal;
             margin: 0;
             line-height: 1.1;
         }
         .terrain {
-            font-size: 12pt;
+            font-size: 14pt;
             color: #666;
             font-weight: normal;
             margin: 0;
             line-height: 1.1;
         }
         .arbitre-list {
-            font-size: 12pt;
+            font-size: 14pt;
             line-height: 1.1;
         }
         .arbitre-item {
@@ -145,6 +145,7 @@ $html = '
             padding-left: 3px;
             line-height: 1.1;
             font-weight: normal;
+            font-size: 13pt;
         }
         .arbitre-item strong {
             color: black;
