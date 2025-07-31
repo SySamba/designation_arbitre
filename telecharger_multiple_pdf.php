@@ -245,11 +245,13 @@ foreach ($matchs as $match) {
     foreach ($arbitres_data as $field => $arbitre) {
         $role_label = $arbitres_roles[$field];
         if ($arbitre['nom']) {
-            $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> ' . htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']);
+            $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> ';
             
-            // Ajouter la photo pour l'arbitre principal
+            // Pour l'arbitre principal, afficher seulement la photo
             if ($field === 'arbitre_id' && $arbitre_photo) {
-                $html .= ' <img src="' . __DIR__ . '/photos_arbitres/' . $arbitre_photo . '" alt="Photo arbitre" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-left: 5px; border: 1px solid #ddd;">';
+                $html .= '<img src="' . __DIR__ . '/photos_arbitres/' . $arbitre_photo . '" alt="Photo arbitre" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; vertical-align: middle; border: 2px solid #333;">';
+            } else {
+                $html .= htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']);
             }
             
             $html .= '</div>';

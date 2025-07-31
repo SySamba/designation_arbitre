@@ -75,7 +75,7 @@ $html = '
             margin: 2px 0;
         }
         .designation-table {
-            width: 95%;
+            width: 75%;
             border-collapse: collapse;
             margin-top: 2px;
             margin-left: auto;
@@ -240,7 +240,7 @@ foreach ($arbitres_data as $field => $arbitre) {
         
         // Ajouter la photo pour l'arbitre principal
         if ($field === 'arbitre_id' && $arbitre_photo) {
-            $html .= ' <img src="' . __DIR__ . '/photos_arbitres/' . $arbitre_photo . '" alt="Photo arbitre" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-left: 5px; border: 1px solid #ddd;">';
+            $html .= ' <img src="' . __DIR__ . '/photos_arbitres/' . $arbitre_photo . '" alt="Photo arbitre" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-left: 5px; border: 2px solid #333;">';
         }
         
         $html .= '</div>';
