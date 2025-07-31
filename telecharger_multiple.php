@@ -33,13 +33,13 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
             --success-color: #059669;
             --warning-color: #d97706;
             --info-color: #0891b2;
-            --light-bg: #f1f5f9;
-            --dark-bg: #1e293b;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --border-radius: 12px;
-            --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
 
         body {
@@ -57,42 +57,42 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: var(--border-radius);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             box-shadow: var(--box-shadow);
         }
 
         .header h1 {
             margin: 0;
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 600;
         }
 
         .header p {
-            margin: 10px 0 0 0;
+            margin: 8px 0 0 0;
             opacity: 0.9;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .card {
             background: white;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            border: none;
+            border: 1px solid #e9ecef;
             margin-bottom: 20px;
             overflow: hidden;
         }
 
         .card-header {
-            background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
+            background: var(--dark-bg);
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
             border: none;
         }
 
         .card-body {
-            padding: 25px;
+            padding: 20px;
         }
 
         .form-select {
@@ -110,47 +110,51 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
 
         .btn {
             border-radius: var(--border-radius);
-            padding: 12px 25px;
-            font-weight: 600;
+            padding: 10px 20px;
+            font-weight: 500;
             transition: var(--transition);
-            border: none;
+            border: 1px solid transparent;
         }
 
         .btn-sm {
-            padding: 8px 12px;
-            font-size: 0.9rem;
+            padding: 6px 10px;
+            font-size: 0.85rem;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
         .btn-success {
-            background: linear-gradient(135deg, var(--success-color), #10b981);
+            background: var(--success-color);
+            border-color: var(--success-color);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .table {
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--box-shadow);
+            border: 1px solid #dee2e6;
         }
 
         .table th {
             background: var(--dark-bg);
             color: white;
             border: none;
-            padding: 8px;
+            padding: 10px 8px;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .table td {
             padding: 8px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #dee2e6;
             vertical-align: middle;
         }
 
@@ -202,11 +206,12 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         }
 
         .selection-info {
-            background: linear-gradient(135deg, var(--info-color), var(--secondary-color));
+            background: var(--info-color);
             color: white;
             padding: 15px;
             border-radius: var(--border-radius);
             margin-bottom: 20px;
+            border: 1px solid #dee2e6;
         }
 
         .no-matches {
@@ -236,6 +241,11 @@ if (isset($_GET['tour']) && !empty($_GET['tour'])) {
         .table td:nth-child(5) .match-info {
             margin-bottom: 1px;
             line-height: 1.1;
+        }
+        
+        /* Centrage de la colonne Rencontre */
+        .table td:nth-child(3) {
+            text-align: center;
         }
     </style>
 </head>
