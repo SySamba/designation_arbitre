@@ -96,16 +96,16 @@ try {
         
         <h4>DÉSIGNATION D'ARBITRAGE</h4>
         
-        <table border='1' cellpadding='2' cellspacing='0' style='border-collapse: collapse; width: 100%;'>
+        <table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse; width: 100%; font-size: 12px; line-height: 1.2;'>
             <tr>
-                <th>Date/Terrain</th>
-                <th>Rencontre</th>
-                <th>Arbitre/Assistants</th>
+                <th style='padding: 2px; font-size: 11px;'>Date/Terrain</th>
+                <th style='padding: 2px; font-size: 11px;'>Rencontre</th>
+                <th style='padding: 2px; font-size: 11px;'>Arbitre/Assistants</th>
             </tr>
             <tr>
-                <td><strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br><strong>" . $match['heure_match'] . "</strong><br><strong>Ville : " . $match['ville'] . "</strong><br><strong>Stade : " . $match['stade'] . "</strong></td>
-                <td><strong>" . $match['equipe_a_nom'] . "</strong><br><strong>VS</strong><br><strong>" . $match['equipe_b_nom'] . "</strong><br><strong>Tour : " . $match['tour'] . "</strong></td>
-                <td>";
+                <td style='padding: 1px; font-size: 10px;'><strong>" . date('d-m-Y', strtotime($match['date_match'])) . "</strong><br><strong>" . $match['heure_match'] . "</strong><br><strong>Ville : " . $match['ville'] . "</strong><br><strong>Stade : " . $match['stade'] . "</strong></td>
+                <td style='padding: 1px; font-size: 10px;'><strong>" . $match['equipe_a_nom'] . "</strong><br><strong>VS</strong><br><strong>" . $match['equipe_b_nom'] . "</strong><br><strong>Tour : " . $match['tour'] . "</strong></td>
+                <td style='padding: 1px; font-size: 10px;'>";
     
     // Ajouter les noms des officiels avec labels
     if ($match['arbitre_nom']) {
