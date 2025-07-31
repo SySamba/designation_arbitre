@@ -231,30 +231,13 @@ foreach ($matchs as $match) {
         'assesseur_id' => ['nom' => $match['assesseur_nom'], 'prenom' => $match['assesseur_prenom']]
     ];
 
-    // Récupérer la photo de l'arbitre principal
-    $arbitre_photo = null;
-    if ($match['arbitre_id']) {
-        $arbitre_query = "SELECT photo FROM arbitres WHERE id = ?";
-        $arbitre_stmt = $pdo->prepare($arbitre_query);
-        $arbitre_stmt->execute([$match['arbitre_id']]);
-        $arbitre_data = $arbitre_stmt->fetch(PDO::FETCH_ASSOC);
-        $arbitre_photo = $arbitre_data['photo'] ?? null;
-    }
+
 
     // Générer les noms d'arbitres avec labels
     foreach ($arbitres_data as $field => $arbitre) {
         $role_label = $arbitres_roles[$field];
         if ($arbitre['nom']) {
-            $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> ';
-            
-            // Pour l'arbitre principal, afficher seulement la photo
-            if ($field === 'arbitre_id' && $arbitre_photo) {
-                $html .= '<img src="' . __DIR__ . '/photos_arbitres/' . $arbitre_photo . '" alt="Photo arbitre" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; vertical-align: middle; border: 2px solid #333;">';
-            } else {
-                $html .= htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']);
-            }
-            
-            $html .= '</div>';
+                    $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> ' . htmlspecialchars($arbitre['nom'] . ' ' . $arbitre['prenom']) . '</div>';
         } else {
             $html .= '<div class="arbitre-item"><strong>' . $role_label . ' :</strong> -</div>';
         }
